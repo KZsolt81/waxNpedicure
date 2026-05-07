@@ -1,0 +1,56 @@
+BRANDING NOTES
+==============
+
+DESIGN TOKENS (from globals.css)
+---------------------------------
+
+  --ink:    #1a1210   — primary dark text / dark backgrounds
+  --paper:  #faf6f3   — page background (warm off-white)
+  --blush:  #e8c9bb   — soft border / accent colour
+  --rose:   #c98b78   — primary accent (tags, links, highlights)
+  --gold:   #b8915a   — heading italic emphasis, prices
+  --mist:   #f2ebe5   — section backgrounds (slightly darker than paper)
+
+TYPOGRAPHY
+----------
+
+  Heading font:  Cormorant Garamond (Google Fonts)
+    - Used for section titles, hero headline, service names, prices
+    - Variable: --font-serif
+    - Weights: 300, 400, 600 (normal + italic)
+
+  Body font: Jost (Google Fonts)
+    - Used for all body copy, labels, buttons, nav links
+    - Variable: --font-sans
+    - Weights: 300, 400, 500
+
+LOGO / BRAND NAME
+-----------------
+
+Replace [Brand Name] in content/business-info.json with the actual business name.
+The Navbar and Footer derive the logo text from this JSON field.
+Add an actual logo image to public/logos/ and update Navbar.tsx if desired.
+
+TONE
+----
+
+  - Professional but warm
+  - Feminine but not childish
+  - Clean and minimal
+  - Avoid exclamation marks in excess
+  - Copy should feel calm and confident
+
+REPLACING PLACEHOLDERS
+-----------------------
+
+Search the codebase for text wrapped in [ ] brackets — these are all placeholder
+content that should be replaced with real business information.
+
+  - [Brand Name]
+  - [Area 1], [Area 2] etc. — service area names and postcodes
+  - [Your Name] — therapist name
+  - About paragraphs
+  - Testimonials (content/testimonials.json)
+  - Qualification names (content/business-info.json)
+  - WhatsApp number, email, Instagram handle
+  - Hero/about/service images in /public/images/

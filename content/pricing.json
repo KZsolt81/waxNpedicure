@@ -1,0 +1,35 @@
+{
+  "note": "All prices are in GBP. Minimum booking value: £35. Travel supplement may apply — see service-areas.json.",
+  "categories": [
+    {
+      "id": "waxing",
+      "label": "Waxing",
+      "items": [
+        { "serviceId": "hollywood-wax",   "name": "Hollywood Wax",       "price": 35,  "durationMinutes": 30 },
+        { "serviceId": "brazilian-wax",   "name": "Brazilian Wax",       "price": 30,  "durationMinutes": 30 },
+        { "serviceId": "bikini-wax",      "name": "Bikini Wax",          "price": 18,  "durationMinutes": 20 },
+        { "serviceId": "leg-wax-full",    "name": "Full Leg Wax",        "price": 38,  "durationMinutes": 45 },
+        { "serviceId": "leg-wax-half",    "name": "Half Leg Wax",        "price": 22,  "durationMinutes": 25 },
+        { "serviceId": "underarm-wax",    "name": "Underarm Wax",        "price": 12,  "durationMinutes": 15 },
+        { "serviceId": "upper-lip-wax",   "name": "Upper Lip Wax",       "price": 8,   "durationMinutes": 10 },
+        { "serviceId": "eyebrow-wax",     "name": "Eyebrow Wax & Shape", "price": 10,  "durationMinutes": 15 },
+        { "serviceId": "arm-wax",         "name": "Full Arm Wax",        "price": 25,  "durationMinutes": 30 }
+      ]
+    },
+    {
+      "id": "pedicure",
+      "label": "Pedicure",
+      "items": [
+        { "serviceId": "classic-pedicure", "name": "Classic Pedicure", "price": 35,  "durationMinutes": 50 },
+        { "serviceId": "gel-pedicure",     "name": "Gel Pedicure",     "price": 42,  "durationMinutes": 60 },
+        { "serviceId": "luxury-pedicure",  "name": "Luxury Pedicure",  "price": 52,  "durationMinutes": 75 },
+        { "serviceId": "express-pedicure", "name": "Express Pedicure", "price": 22,  "durationMinutes": 30 }
+      ]
+    }
+  ],
+  "travelFees": [
+    { "zone": "Core area (within [X] miles)", "fee": 0,  "notes": "Free" },
+    { "zone": "Extended area ([X]–[Y] miles)", "fee": 5, "notes": "£5 supplement" },
+    { "zone": "Outer zone (please enquire)",  "fee": null, "notes": "POA" }
+  ]
+}

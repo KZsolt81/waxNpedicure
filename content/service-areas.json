@@ -1,0 +1,22 @@
+{
+  "intro": "Based in South East London, we travel directly to your home. Below are the areas we currently cover — if your area isn't listed, just ask.",
+  "primaryAreas": [
+    { "name": "[Area 1]",  "postcodes": ["[SE1]"] },
+    { "name": "[Area 2]",  "postcodes": ["[SE4]"] },
+    { "name": "[Area 3]",  "postcodes": ["[SE5]"] },
+    { "name": "[Area 4]",  "postcodes": ["[SE8]"] },
+    { "name": "[Area 5]",  "postcodes": ["[SE13]"] },
+    { "name": "[Area 6]",  "postcodes": ["[SE14]"] },
+    { "name": "[Area 7]",  "postcodes": ["[SE15]"] },
+    { "name": "[Area 8]",  "postcodes": ["[SE16]"] },
+    { "name": "[Area 9]",  "postcodes": ["[SE22]"] },
+    { "name": "[Area 10]", "postcodes": ["[SE23]"] }
+  ],
+  "extendedAreas": [
+    { "name": "[Extended Area 1]", "postcodes": ["[BR1]"], "travelSupplement": 5 },
+    { "name": "[Extended Area 2]", "postcodes": ["[BR3]"], "travelSupplement": 5 }
+  ],
+  "travelNote": "Core SE London postcodes are covered with no travel charge. A small supplement of £5 applies to extended postcodes. For areas not listed, please enquire — we may be able to accommodate with a quoted supplement.",
+  "minimumBookingNote": "A minimum booking value of £35 applies to all appointments.",
+  "enquiryPrompt": "Not sure if we cover your postcode? Drop us a message and we'll confirm within [a few hours]."
+}

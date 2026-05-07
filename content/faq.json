@@ -1,0 +1,103 @@
+{
+  "categories": [
+    {
+      "id": "general",
+      "label": "General",
+      "items": [
+        {
+          "id": "what-is-mobile-beauty",
+          "question": "What is a mobile beauty service?",
+          "answer": "A mobile beauty therapist comes to your home — or another location of your choice — rather than you visiting a salon. You get the same professional quality treatments in a space where you're comfortable, without travel, parking, or waiting."
+        },
+        {
+          "id": "areas-covered",
+          "question": "Which areas do you cover?",
+          "answer": "We primarily cover South East London including [list key areas]. If you're unsure whether your postcode falls within our service area, just send us a message and we'll confirm quickly."
+        },
+        {
+          "id": "how-to-book",
+          "question": "How do I book an appointment?",
+          "answer": "The easiest way is to message us on WhatsApp. You can also use the contact form on this website or send an email. We'll confirm availability and send you a booking confirmation within [X] hours."
+        },
+        {
+          "id": "same-day-booking",
+          "question": "Can I book same-day?",
+          "answer": "Same-day appointments may be available depending on the diary. WhatsApp us to check — we'll always let you know as soon as possible."
+        }
+      ]
+    },
+    {
+      "id": "waxing",
+      "label": "Waxing",
+      "items": [
+        {
+          "id": "wax-preparation",
+          "question": "How should I prepare for a waxing treatment?",
+          "answer": "Hair should be at least [0.5–1cm] long for the wax to grip effectively. Avoid sunbathing, fake tan, or exfoliating 24–48 hours before your appointment. Shower beforehand and wear loose, comfortable clothing."
+        },
+        {
+          "id": "wax-aftercare",
+          "question": "What should I do after a wax?",
+          "answer": "Avoid hot baths, saunas, sunbeds, and tight clothing for 24 hours after waxing. Do not exfoliate for 48 hours. Moisturise regularly to keep skin smooth and prevent ingrown hairs."
+        },
+        {
+          "id": "wax-pain",
+          "question": "Does waxing hurt?",
+          "answer": "There will be some discomfort, but it's brief. Hot wax used for intimate areas is gentler than strip wax and many clients find it much more comfortable. Regular waxing over time generally becomes less uncomfortable as the hair becomes finer."
+        },
+        {
+          "id": "wax-sensitive-skin",
+          "question": "I have sensitive skin — can I still be waxed?",
+          "answer": "Yes, in most cases. We use premium hot wax formulations designed for sensitive skin. A patch test can be arranged prior to your first treatment. Please mention any skin conditions, medications, or allergies at the time of booking."
+        }
+      ]
+    },
+    {
+      "id": "pedicure",
+      "label": "Pedicure",
+      "items": [
+        {
+          "id": "pedicure-preparation",
+          "question": "Do I need to prepare anything for a pedicure?",
+          "answer": "No special preparation is needed. Remove any existing nail polish if you have it, and ensure your feet are clean. We'll take care of everything else — we bring all products and equipment."
+        },
+        {
+          "id": "gel-removal",
+          "question": "Can you remove my existing gel polish?",
+          "answer": "Gel removal can be added to any pedicure appointment for a small additional charge of £[X]. Please mention this when booking so we can allow enough time."
+        },
+        {
+          "id": "pedicure-difference",
+          "question": "What's the difference between Classic, Gel, and Luxury pedicures?",
+          "answer": "The Classic pedicure includes all the essentials: soak, cuticle care, shaping, exfoliation, massage, and regular polish. The Gel pedicure adds long-lasting gel polish. The Luxury pedicure extends the experience with a heated foot mask, deeper massage, and your choice of regular or gel polish."
+        }
+      ]
+    },
+    {
+      "id": "practical",
+      "label": "Practical",
+      "items": [
+        {
+          "id": "what-to-expect",
+          "question": "What should I expect on the day?",
+          "answer": "We arrive at the agreed time with all equipment, products, and towels. We'll set up quickly with minimal disruption. Most treatments are carried out on a bed or sofa — just make sure there's a comfortable space available. We clean up completely before we leave."
+        },
+        {
+          "id": "payment-methods",
+          "question": "How do I pay?",
+          "answer": "We accept bank transfer (preferred), cash, and card payments via a reader on request. Full payment is due on the day of treatment unless a deposit was agreed at booking."
+        },
+        {
+          "id": "minimum-booking",
+          "question": "Is there a minimum booking amount?",
+          "answer": "Yes, the minimum booking value is £35. This is easily met by most individual treatments, and our bundles offer great value above this threshold."
+        },
+        {
+          "id": "cancellation",
+          "question": "What is your cancellation policy?",
+          "answer": "We ask for at least [24] hours notice if you need to cancel or reschedule. Cancellations with less notice may incur a [50%] charge. We understand life happens — please just let us know as soon as possible."
+        }
+      ]
+    }
+  ]
+}

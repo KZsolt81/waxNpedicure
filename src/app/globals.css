@@ -1,0 +1,40 @@
+@import "tailwindcss";
+
+:root {
+  --ink:        #1a1210;
+  --paper:      #faf6f3;
+  --blush:      #e8c9bb;
+  --rose:       #c98b78;
+  --gold:       #b8915a;
+  --mist:       #f2ebe5;
+  --shadow:     rgba(30,10,5,.12);
+}
+
+@theme inline {
+  --color-ink:    var(--ink);
+  --color-paper:  var(--paper);
+  --color-blush:  var(--blush);
+  --color-rose:   var(--rose);
+  --color-gold:   var(--gold);
+  --color-mist:   var(--mist);
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--paper);
+  color: var(--ink);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Heading / serif utility — Cormorant Garamond applied via className="font-serif" */
+
+/* Fade-in animation */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.fade-in   { animation: fadeUp .7s ease both; }
+.fade-in-2 { animation: fadeUp .7s .15s ease both; }
+.fade-in-3 { animation: fadeUp .7s .3s ease both; }

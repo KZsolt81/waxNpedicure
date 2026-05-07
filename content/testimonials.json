@@ -1,0 +1,52 @@
+{
+  "testimonials": [
+    {
+      "id": "t1",
+      "stars": 5,
+      "text": "[Client review — 2-3 sentences praising the service. Replace with a real testimonial from a happy client.]",
+      "author": "[Client First Name]",
+      "location": "[SE London area]",
+      "service": "Hollywood Wax"
+    },
+    {
+      "id": "t2",
+      "stars": 5,
+      "text": "[Client review — 2-3 sentences praising the convenience and quality. Replace with a real testimonial.]",
+      "author": "[Client First Name]",
+      "location": "[SE London area]",
+      "service": "Luxury Pedicure"
+    },
+    {
+      "id": "t3",
+      "stars": 5,
+      "text": "[Client review — 2-3 sentences about the bundle experience. Replace with a real testimonial.]",
+      "author": "[Client First Name]",
+      "location": "[SE London area]",
+      "service": "Hollywood + Classic Pedicure Bundle"
+    },
+    {
+      "id": "t4",
+      "stars": 5,
+      "text": "[Client review — replace with a real testimonial about the therapist's professionalism and hygiene standards.]",
+      "author": "[Client First Name]",
+      "location": "[SE London area]",
+      "service": "Gel Pedicure"
+    },
+    {
+      "id": "t5",
+      "stars": 5,
+      "text": "[Client review — replace with a real testimonial about the home experience and relaxation.]",
+      "author": "[Client First Name]",
+      "location": "[SE London area]",
+      "service": "Brazilian Wax"
+    },
+    {
+      "id": "t6",
+      "stars": 5,
+      "text": "[Client review — replace with a real testimonial about value for money and results.]",
+      "author": "[Client First Name]",
+      "location": "[SE London area]",
+      "service": "Full Leg Wax"
+    }
+  ]
+}

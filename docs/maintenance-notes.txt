@@ -1,0 +1,73 @@
+MAINTENANCE NOTES
+=================
+
+UPDATING CONTENT
+----------------
+
+All business-specific content lives in /content/*.json files.
+Edit these files to update prices, services, areas, FAQ, testimonials, and offers
+WITHOUT touching any React/TypeScript code.
+
+  content/business-info.json  — name, phone, WhatsApp, email, hours, policies
+  content/services.json       — service categories and descriptions
+  content/pricing.json        — prices, durations, travel fees
+  content/bundles.json        — bundle combinations and savings
+  content/faq.json            — FAQ questions and answers (categorised)
+  content/testimonials.json   — client reviews
+  content/service-areas.json  — covered postcodes and travel info
+  content/offers.json         — promotions (set active: true/false to show/hide)
+
+ADDING IMAGES
+-------------
+
+1. Add images to /public/images/
+2. Replace <ImagePlaceholder> components in the relevant page/component
+   with Next.js <Image> tags, e.g.:
+      import Image from "next/image";
+      <Image src="/images/hero.jpg" alt="..." fill className="object-cover" />
+
+CONTACT FORM
+------------
+
+The form in /src/components/ContactForm.tsx currently simulates a submission.
+To make it live, replace the setTimeout block with a real API call.
+Options:
+  - Resend / Sendgrid API via Next.js /app/api/contact/route.ts
+  - Formspree (no backend needed — just change the fetch URL)
+  - EmailJS (client-side, no backend)
+
+ADDING A NEW SERVICE
+--------------------
+
+1. Add to content/services.json under the correct category
+2. Add a matching pricing entry in content/pricing.json using the same serviceId
+3. The Services page and pricing page auto-render from the JSON — no code change needed.
+4. Optionally add the service to content/bundles.json if it should appear in a bundle.
+
+ADDING A NEW BUNDLE
+-------------------
+
+Add an entry to content/bundles.json following the existing pattern.
+The bundles page renders all entries in the JSON automatically.
+
+GOING LIVE (VERCEL)
+-------------------
+
+1. Push to GitHub
+2. Connect repo to Vercel at vercel.com/new
+3. Set NEXT_PUBLIC_SITE_URL environment variable to your domain
+4. Vercel handles build and deployment automatically
+
+LOCAL DEVELOPMENT
+-----------------
+
+  npm run dev       — start dev server at http://localhost:3000
+  npm run build     — production build
+  npm run lint      — ESLint check
+
+ADDING A NEW PAGE
+-----------------
+
+Create a folder under /src/app/ and add a page.tsx file following the
+pattern of existing pages (export metadata, export default function).
+Add the link to Navbar.tsx and Footer.tsx.

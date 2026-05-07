@@ -1,0 +1,33 @@
+{
+  "name": "[Brand Name]",
+  "tagline": "Salon-quality waxing & pedicures, in the comfort of your home.",
+  "description": "Professional mobile beauty therapist serving South East London. Fully insured, qualified, and dedicated to delivering exceptional waxing and pedicure treatments at your doorstep.",
+  "phone": "[+44 xxx xxxx xxxx]",
+  "whatsapp": "[+44 xxx xxxx xxxx]",
+  "email": "[hello@yourbrand.co.uk]",
+  "instagram": "@[yourbrand]",
+  "facebook": "[Your Brand]",
+  "location": "South East London",
+  "established": "[Year]",
+  "minimumBooking": 35,
+  "currency": "GBP",
+  "currencySymbol": "£",
+  "qualifications": [
+    "[NVQ Level 3 Beauty Therapy]",
+    "[Guild of Professional Beauty Therapists — Insured]",
+    "[Advanced Waxing Certificate]"
+  ],
+  "bookingPolicy": "Bookings are confirmed via WhatsApp or email within [X] hours. A [deposit / full payment] may be required to secure your slot.",
+  "cancellationPolicy": "[24] hours notice is required for cancellations or rescheduling. Late cancellations may incur a [50%] fee.",
+  "paymentMethods": ["Bank Transfer", "Cash", "Card Reader (on request)"],
+  "travelFeeNote": "Travel is free within [X] miles of [SE London]. A small travel supplement may apply for postcodes outside the core coverage area — please enquire.",
+  "openingHours": {
+    "Monday": "9am – 7pm",
+    "Tuesday": "9am – 7pm",
+    "Wednesday": "9am – 7pm",
+    "Thursday": "9am – 8pm",
+    "Friday": "9am – 8pm",
+    "Saturday": "9am – 6pm",
+    "Sunday": "By request"
+  }
+}
