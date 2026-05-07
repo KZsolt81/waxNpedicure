@@ -1,0 +1,32 @@
+{
+  "intro": "Keep an eye on this page for seasonal promotions, referral rewards, and limited-time offers.",
+  "offers": [
+    {
+      "id": "new-client",
+      "tag": "New Client",
+      "title": "[10% Off Your First Visit]",
+      "description": "[Placeholder: Offer a discount for first-time clients. Replace with your actual new client offer when ready.]",
+      "code": "[WELCOME10]",
+      "expiry": null,
+      "active": true
+    },
+    {
+      "id": "refer-a-friend",
+      "tag": "Refer a Friend",
+      "title": "[£5 Off When You Refer a Friend]",
+      "description": "[Placeholder: Both you and your referred friend receive £5 off your next booking. Replace with your actual referral terms.]",
+      "code": null,
+      "expiry": null,
+      "active": true
+    },
+    {
+      "id": "seasonal",
+      "tag": "Seasonal",
+      "title": "[Summer Bundle Special]",
+      "description": "[Placeholder: Seasonal offer details. Update this each season with current promotions.]",
+      "code": null,
+      "expiry": "[DD/MM/YYYY]",
+      "active": false
+    }
+  ]
+}

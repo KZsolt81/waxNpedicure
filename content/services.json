@@ -1,0 +1,109 @@
+{
+  "categories": [
+    {
+      "id": "waxing",
+      "label": "Waxing",
+      "description": "Professional waxing using premium hot and warm wax. All treatments are patch-test friendly — please advise of any skin conditions at the time of booking.",
+      "services": [
+        {
+          "id": "hollywood-wax",
+          "name": "Hollywood Wax",
+          "description": "Complete intimate wax — front and back — leaving skin perfectly smooth. Uses gentle hot wax suitable for sensitive skin.",
+          "durationMinutes": 30,
+          "imageAlt": "Hollywood wax treatment"
+        },
+        {
+          "id": "brazilian-wax",
+          "name": "Brazilian Wax",
+          "description": "A clean Brazilian leaving a small strip. Ideal for those who prefer a tidy, minimal-coverage look.",
+          "durationMinutes": 30,
+          "imageAlt": "Brazilian wax treatment"
+        },
+        {
+          "id": "bikini-wax",
+          "name": "Bikini Wax",
+          "description": "Cleans up the bikini line for a neat, comfortable finish. Perfect before holidays or special occasions.",
+          "durationMinutes": 20,
+          "imageAlt": "Bikini wax treatment"
+        },
+        {
+          "id": "leg-wax-full",
+          "name": "Full Leg Wax",
+          "description": "Smooth, hair-free legs from ankle to hip using warm strip wax. Long-lasting results.",
+          "durationMinutes": 45,
+          "imageAlt": "Full leg wax treatment"
+        },
+        {
+          "id": "leg-wax-half",
+          "name": "Half Leg Wax",
+          "description": "Wax from the knee down, or upper leg — your choice. Great as a standalone or combined with other treatments.",
+          "durationMinutes": 25,
+          "imageAlt": "Half leg wax treatment"
+        },
+        {
+          "id": "underarm-wax",
+          "name": "Underarm Wax",
+          "description": "Quick, efficient underarm wax using hot wax for a clean, close finish with minimal discomfort.",
+          "durationMinutes": 15,
+          "imageAlt": "Underarm wax treatment"
+        },
+        {
+          "id": "upper-lip-wax",
+          "name": "Upper Lip Wax",
+          "description": "A fast and precise upper lip wax using gentle hot wax, ideal for sensitive facial skin.",
+          "durationMinutes": 10,
+          "imageAlt": "Upper lip wax treatment"
+        },
+        {
+          "id": "eyebrow-wax",
+          "name": "Eyebrow Wax & Shape",
+          "description": "Expert brow shaping and waxing to frame your face beautifully.",
+          "durationMinutes": 15,
+          "imageAlt": "Eyebrow wax and shape treatment"
+        },
+        {
+          "id": "arm-wax",
+          "name": "Full Arm Wax",
+          "description": "Smooth arms from wrist to shoulder using warm strip wax for long-lasting results.",
+          "durationMinutes": 30,
+          "imageAlt": "Full arm wax treatment"
+        }
+      ]
+    },
+    {
+      "id": "pedicure",
+      "label": "Pedicure",
+      "description": "Relaxing, professional pedicures carried out at your home. All tools are sanitised between clients and single-use items are used wherever possible.",
+      "services": [
+        {
+          "id": "classic-pedicure",
+          "name": "Classic Pedicure",
+          "description": "A thorough pedicure including soak, cuticle care, nail shaping, exfoliation, massage, and a polish of your choice.",
+          "durationMinutes": 50,
+          "imageAlt": "Classic pedicure treatment"
+        },
+        {
+          "id": "gel-pedicure",
+          "name": "Gel Pedicure",
+          "description": "All the care of a classic pedicure with a long-lasting gel polish finish that stays chip-free for weeks.",
+          "durationMinutes": 60,
+          "imageAlt": "Gel pedicure treatment"
+        },
+        {
+          "id": "luxury-pedicure",
+          "name": "Luxury Pedicure",
+          "description": "An indulgent treat — extended massage, heated foot mask, exfoliation, cuticle care, and your choice of standard or gel polish.",
+          "durationMinutes": 75,
+          "imageAlt": "Luxury pedicure treatment"
+        },
+        {
+          "id": "express-pedicure",
+          "name": "Express Pedicure",
+          "description": "A quick refresh — nail tidy, cuticle care, and a fresh coat of polish. Perfect for maintaining your look between full treatments.",
+          "durationMinutes": 30,
+          "imageAlt": "Express pedicure treatment"
+        }
+      ]
+    }
+  ]
+}

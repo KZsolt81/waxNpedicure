@@ -1,0 +1,65 @@
+{
+  "intro": "Book a waxing treatment and pedicure together in one visit and enjoy a discounted combined price. Two treatments, one appointment, no travel stress.",
+  "bundles": [
+    {
+      "id": "hollywood-classic",
+      "tag": "Most Popular",
+      "name": "Hollywood + Classic Pedicure",
+      "description": "Our bestselling combination — a full Hollywood wax followed by a relaxing Classic Pedicure. Everything you need, beautifully done, in one visit.",
+      "items": [
+        { "name": "Hollywood Wax",     "standardPrice": 35 },
+        { "name": "Classic Pedicure",  "standardPrice": 35 }
+      ],
+      "standardTotal": 70,
+      "bundlePrice": 60,
+      "saving": 10,
+      "featured": true,
+      "variant": "light"
+    },
+    {
+      "id": "hollywood-luxury",
+      "tag": "Best Value",
+      "name": "Hollywood + Luxury Pedicure",
+      "description": "Treat yourself to the ultimate home beauty experience. A Hollywood wax combined with our indulgent Luxury Pedicure — massage, heated mask, and gel polish included.",
+      "items": [
+        { "name": "Hollywood Wax",     "standardPrice": 35 },
+        { "name": "Luxury Pedicure",   "standardPrice": 52 }
+      ],
+      "standardTotal": 87,
+      "bundlePrice": 75,
+      "saving": 12,
+      "featured": false,
+      "variant": "dark"
+    },
+    {
+      "id": "brazilian-gel",
+      "tag": "Great Combo",
+      "name": "Brazilian + Gel Pedicure",
+      "description": "A clean Brazilian wax paired with a long-lasting gel pedicure. Leave feeling polished from head to toe.",
+      "items": [
+        { "name": "Brazilian Wax",  "standardPrice": 30 },
+        { "name": "Gel Pedicure",   "standardPrice": 42 }
+      ],
+      "standardTotal": 72,
+      "bundlePrice": 63,
+      "saving": 9,
+      "featured": false,
+      "variant": "light"
+    },
+    {
+      "id": "legs-classic",
+      "tag": "Summer Ready",
+      "name": "Full Legs + Classic Pedicure",
+      "description": "Smooth legs and beautiful toes — everything you need to feel confident barefoot. Perfect before a holiday or special occasion.",
+      "items": [
+        { "name": "Full Leg Wax",      "standardPrice": 38 },
+        { "name": "Classic Pedicure",  "standardPrice": 35 }
+      ],
+      "standardTotal": 73,
+      "bundlePrice": 63,
+      "saving": 10,
+      "featured": false,
+      "variant": "dark"
+    }
+  ]
+}
