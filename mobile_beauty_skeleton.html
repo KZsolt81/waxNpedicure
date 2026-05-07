@@ -1,0 +1,1173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>[BRAND NAME] — Mobile Beauty</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ── DESIGN TOKENS ─────────────────────────────────────── */
+    :root {
+      --ink:        #1a1210;
+      --paper:      #faf6f3;
+      --blush:      #e8c9bb;
+      --rose:       #c98b78;
+      --gold:       #b8915a;
+      --mist:       #f2ebe5;
+      --shadow:     rgba(30,10,5,.12);
+      --serif:      'Cormorant Garamond', Georgia, serif;
+      --sans:       'Jost', sans-serif;
+      --radius:     4px;
+      --transition: .35s cubic-bezier(.4,0,.2,1);
+    }
+
+    /* ── RESET ─────────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--sans);
+      background: var(--paper);
+      color: var(--ink);
+      font-size: 16px;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: inherit; text-decoration: none; }
+    img { display: block; width: 100%; height: 100%; object-fit: cover; }
+
+    /* ── UTILITY ───────────────────────────────────────────── */
+    .container { max-width: 1180px; margin: 0 auto; padding: 0 24px; }
+    .tag {
+      display: inline-block;
+      font-family: var(--sans);
+      font-size: .68rem;
+      font-weight: 500;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--rose);
+      margin-bottom: 14px;
+    }
+    .section-title {
+      font-family: var(--serif);
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      font-weight: 300;
+      line-height: 1.15;
+      margin-bottom: 18px;
+    }
+    .section-title em { font-style: italic; color: var(--gold); }
+    .body-text { font-size: .95rem; font-weight: 300; color: #5a4840; max-width: 560px; line-height: 1.8; }
+    .placeholder {
+      background: repeating-linear-gradient(
+        135deg,
+        #e8d9d0 0px, #e8d9d0 10px,
+        #f0e5df 10px, #f0e5df 20px
+      );
+      border: 1px dashed var(--blush);
+      border-radius: var(--radius);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--sans);
+      font-size: .78rem;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--rose);
+      font-weight: 500;
+    }
+
+    /* ── BUTTONS ───────────────────────────────────────────── */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 14px 32px;
+      border-radius: 100px;
+      font-family: var(--sans);
+      font-size: .82rem;
+      font-weight: 500;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      cursor: pointer;
+      border: none;
+      transition: var(--transition);
+    }
+    .btn-primary { background: var(--ink); color: var(--paper); }
+    .btn-primary:hover { background: var(--gold); }
+    .btn-outline { background: transparent; color: var(--ink); border: 1.5px solid var(--ink); }
+    .btn-outline:hover { background: var(--ink); color: var(--paper); }
+    .btn-rose { background: var(--rose); color: #fff; }
+    .btn-rose:hover { background: var(--gold); }
+
+    /* ══════════════════════════════════════════════════════════
+       NAV
+    ══════════════════════════════════════════════════════════ */
+    .nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 18px 0;
+      background: rgba(250,246,243,.88);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(200,160,140,.15);
+      transition: var(--transition);
+    }
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .nav-logo {
+      font-family: var(--serif);
+      font-size: 1.55rem;
+      font-weight: 400;
+      letter-spacing: .02em;
+      color: var(--ink);
+    }
+    .nav-logo span { color: var(--rose); font-style: italic; }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 36px;
+      list-style: none;
+    }
+    .nav-links a {
+      font-size: .8rem;
+      font-weight: 400;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      opacity: .7;
+      transition: opacity var(--transition);
+    }
+    .nav-links a:hover { opacity: 1; }
+    .nav-cta { margin-left: 8px; }
+
+    /* ══════════════════════════════════════════════════════════
+       HERO
+    ══════════════════════════════════════════════════════════ */
+    .hero {
+      min-height: 100svh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      padding-top: 72px;
+      overflow: hidden;
+      position: relative;
+    }
+    .hero-content {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 80px 60px 80px 0;
+    }
+    .hero-eyebrow {
+      font-size: .72rem;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      color: var(--rose);
+      font-weight: 500;
+      margin-bottom: 24px;
+    }
+    .hero-headline {
+      font-family: var(--serif);
+      font-size: clamp(2.8rem, 5vw, 5rem);
+      font-weight: 300;
+      line-height: 1.08;
+      margin-bottom: 28px;
+    }
+    .hero-headline em { font-style: italic; color: var(--gold); display: block; }
+    .hero-sub {
+      font-size: 1rem;
+      font-weight: 300;
+      color: #6a5048;
+      max-width: 460px;
+      line-height: 1.85;
+      margin-bottom: 40px;
+    }
+    /* ⬇ REPLACE this text with your actual tagline & description */
+    /* ⬇ REPLACE [HERO_HEADLINE] [HERO_SUBHEADLINE] [HERO_DESCRIPTION] */
+    .hero-actions { display: flex; gap: 16px; flex-wrap: wrap; }
+    .hero-badge {
+      margin-top: 56px;
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 20px;
+      background: var(--mist);
+      border-radius: 100px;
+      border: 1px solid var(--blush);
+      font-size: .78rem;
+      font-weight: 400;
+      color: #6a5048;
+    }
+    .hero-badge b { color: var(--rose); font-weight: 500; }
+    .hero-visual {
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-img-wrap {
+      position: absolute;
+      inset: 0;
+    }
+    /* ⬇ REPLACE hero-img-wrap background-image with actual hero photo */
+    .hero-img-wrap .placeholder { height: 100%; border-radius: 0; border: none; }
+    .hero-overlay {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 40%;
+      background: linear-gradient(to top, rgba(250,246,243,.6), transparent);
+      pointer-events: none;
+    }
+
+    /* ══════════════════════════════════════════════════════════
+       TRUST STRIP
+    ══════════════════════════════════════════════════════════ */
+    .trust-strip {
+      background: var(--ink);
+      padding: 18px 0;
+    }
+    .trust-inner {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 48px;
+      flex-wrap: wrap;
+    }
+    .trust-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: .78rem;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--blush);
+      font-weight: 400;
+    }
+    .trust-dot { width: 4px; height: 4px; border-radius: 50%; background: var(--rose); }
+    /* ⬇ REPLACE trust items with real USPs */
+
+    /* ══════════════════════════════════════════════════════════
+       ABOUT / INTRO
+    ══════════════════════════════════════════════════════════ */
+    .about { padding: 120px 0; }
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+    .about-img {
+      height: 540px;
+      border-radius: 2px;
+      overflow: hidden;
+      position: relative;
+    }
+    .about-img-inner { width: 100%; height: 100%; }
+    /* ⬇ REPLACE about-img-inner with your about/brand photo */
+    .about-accent {
+      position: absolute;
+      bottom: -20px; right: -20px;
+      width: 180px; height: 180px;
+      border: 1px solid var(--blush);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+    /* ⬇ REPLACE [ABOUT_HEADLINE] [ABOUT_COPY] */
+
+    /* ══════════════════════════════════════════════════════════
+       SERVICES
+    ══════════════════════════════════════════════════════════ */
+    .services { padding: 120px 0; background: var(--mist); }
+    .services-header { text-align: center; margin-bottom: 72px; }
+    .services-header .body-text { margin: 0 auto; }
+    .services-tabs {
+      display: flex;
+      gap: 4px;
+      justify-content: center;
+      margin-bottom: 48px;
+    }
+    .tab-btn {
+      padding: 10px 28px;
+      border-radius: 100px;
+      border: 1.5px solid var(--blush);
+      background: transparent;
+      font-family: var(--sans);
+      font-size: .8rem;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: var(--transition);
+      color: var(--ink);
+    }
+    .tab-btn.active, .tab-btn:hover { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    .service-card {
+      background: var(--paper);
+      border-radius: 2px;
+      overflow: hidden;
+      border: 1px solid rgba(200,160,140,.2);
+      transition: var(--transition);
+    }
+    .service-card:hover { transform: translateY(-4px); box-shadow: 0 20px 48px var(--shadow); }
+    .service-card-img { height: 220px; }
+    /* ⬇ REPLACE each service-card-img with actual service photo */
+    .service-card-body { padding: 28px; }
+    .service-name {
+      font-family: var(--serif);
+      font-size: 1.4rem;
+      font-weight: 400;
+      margin-bottom: 8px;
+    }
+    .service-desc { font-size: .88rem; color: #6a5048; font-weight: 300; margin-bottom: 16px; }
+    .service-meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .service-price {
+      font-family: var(--serif);
+      font-size: 1.5rem;
+      font-weight: 300;
+      color: var(--gold);
+    }
+    .service-duration { font-size: .75rem; color: #9a7868; letter-spacing: .06em; text-transform: uppercase; }
+    /* ⬇ REPLACE service names, descriptions, prices, durations from services.json / pricing.json */
+
+    /* ══════════════════════════════════════════════════════════
+       BUNDLES / OFFERS
+    ══════════════════════════════════════════════════════════ */
+    .bundles { padding: 120px 0; }
+    .bundles-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+      margin-top: 64px;
+    }
+    .bundle-card {
+      padding: 48px;
+      border-radius: 2px;
+      position: relative;
+      overflow: hidden;
+      transition: var(--transition);
+    }
+    .bundle-card-light {
+      background: var(--mist);
+      border: 1px solid var(--blush);
+    }
+    .bundle-card-dark {
+      background: var(--ink);
+      color: var(--paper);
+    }
+    .bundle-card:hover { transform: translateY(-4px); box-shadow: 0 24px 64px var(--shadow); }
+    .bundle-tag {
+      font-size: .68rem;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      font-weight: 500;
+      color: var(--rose);
+      margin-bottom: 16px;
+    }
+    .bundle-card-dark .bundle-tag { color: var(--blush); }
+    .bundle-name {
+      font-family: var(--serif);
+      font-size: 1.9rem;
+      font-weight: 300;
+      margin-bottom: 12px;
+      line-height: 1.2;
+    }
+    .bundle-desc { font-size: .9rem; font-weight: 300; opacity: .75; margin-bottom: 28px; }
+    .bundle-includes { list-style: none; margin-bottom: 32px; }
+    .bundle-includes li {
+      font-size: .88rem;
+      font-weight: 300;
+      padding: 6px 0;
+      border-bottom: 1px solid rgba(200,160,140,.2);
+      display: flex;
+      justify-content: space-between;
+    }
+    .bundle-includes li:last-child { border-bottom: none; }
+    .bundle-price-row { display: flex; align-items: baseline; gap: 12px; margin-bottom: 28px; }
+    .bundle-price-now {
+      font-family: var(--serif);
+      font-size: 3rem;
+      font-weight: 300;
+      color: var(--gold);
+    }
+    .bundle-price-was {
+      font-size: 1rem;
+      opacity: .5;
+      text-decoration: line-through;
+    }
+    .bundle-saving {
+      font-size: .75rem;
+      background: var(--rose);
+      color: #fff;
+      padding: 3px 10px;
+      border-radius: 100px;
+      font-weight: 500;
+    }
+    /* ⬇ REPLACE bundle details from bundles.json */
+
+    /* ══════════════════════════════════════════════════════════
+       FULL PRICING TABLE
+    ══════════════════════════════════════════════════════════ */
+    .pricing { padding: 120px 0; background: var(--mist); }
+    .pricing-header { text-align: center; margin-bottom: 64px; }
+    .pricing-cols {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+    }
+    .pricing-col-title {
+      font-family: var(--serif);
+      font-size: 1.6rem;
+      font-weight: 400;
+      margin-bottom: 28px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--blush);
+    }
+    .pricing-table { width: 100%; border-collapse: collapse; }
+    .pricing-table tr { border-bottom: 1px solid rgba(200,160,140,.2); }
+    .pricing-table td { padding: 14px 4px; font-size: .9rem; font-weight: 300; }
+    .pricing-table td:last-child { text-align: right; font-family: var(--serif); font-size: 1.1rem; color: var(--gold); font-weight: 400; }
+    .pricing-note {
+      margin-top: 48px;
+      padding: 24px 32px;
+      background: var(--paper);
+      border-left: 3px solid var(--rose);
+      border-radius: 0 2px 2px 0;
+      font-size: .88rem;
+      color: #6a5048;
+      font-weight: 300;
+    }
+    /* ⬇ REPLACE all pricing rows from pricing.json */
+
+    /* ══════════════════════════════════════════════════════════
+       SERVICE AREA
+    ══════════════════════════════════════════════════════════ */
+    .area { padding: 120px 0; }
+    .area-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+    .area-map {
+      height: 460px;
+      background: #e5dcd6;
+      border-radius: 2px;
+      overflow: hidden;
+    }
+    /* ⬇ REPLACE area-map with an embedded Google Map or map image from service_area.json */
+    .area-list { list-style: none; margin: 28px 0; }
+    .area-list li {
+      padding: 10px 0;
+      border-bottom: 1px solid rgba(200,160,140,.2);
+      font-size: .9rem;
+      font-weight: 300;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .area-list li::before {
+      content: '';
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--rose);
+      flex-shrink: 0;
+    }
+    .area-callout {
+      margin-top: 28px;
+      padding: 20px 24px;
+      background: var(--mist);
+      border-radius: 2px;
+      border: 1px solid var(--blush);
+      font-size: .88rem;
+      color: #6a5048;
+      font-weight: 300;
+    }
+    /* ⬇ REPLACE area list items from service_area.json (postcodes / towns covered) */
+
+    /* ══════════════════════════════════════════════════════════
+       FAQ
+    ══════════════════════════════════════════════════════════ */
+    .faq { padding: 120px 0; background: var(--ink); color: var(--paper); }
+    .faq .section-title { color: var(--paper); }
+    .faq-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2px;
+      margin-top: 64px;
+    }
+    .faq-item {
+      padding: 32px;
+      border: 1px solid rgba(255,255,255,.07);
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    .faq-item:hover { background: rgba(255,255,255,.04); }
+    .faq-q {
+      font-family: var(--serif);
+      font-size: 1.1rem;
+      font-weight: 400;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12px;
+    }
+    .faq-q span { opacity: .4; font-size: 1.2rem; transition: var(--transition); flex-shrink: 0; }
+    .faq-a { font-size: .88rem; font-weight: 300; opacity: .65; line-height: 1.8; }
+    /* ⬇ REPLACE FAQ questions/answers from faq_agent.py output */
+
+    /* ══════════════════════════════════════════════════════════
+       BOOKING
+    ══════════════════════════════════════════════════════════ */
+    .booking { padding: 120px 0; }
+    .booking-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: start;
+    }
+    .booking-form { display: flex; flex-direction: column; gap: 16px; }
+    .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .field {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .field label { font-size: .75rem; letter-spacing: .1em; text-transform: uppercase; font-weight: 500; color: #8a6858; }
+    .field input, .field select, .field textarea {
+      padding: 13px 16px;
+      border: 1.5px solid var(--blush);
+      border-radius: var(--radius);
+      font-family: var(--sans);
+      font-size: .9rem;
+      font-weight: 300;
+      background: var(--paper);
+      color: var(--ink);
+      transition: border-color var(--transition);
+      outline: none;
+    }
+    .field input:focus, .field select:focus, .field textarea:focus { border-color: var(--rose); }
+    .field textarea { resize: vertical; min-height: 110px; }
+    .booking-info { padding-top: 12px; }
+    .info-card {
+      padding: 28px;
+      background: var(--mist);
+      border: 1px solid var(--blush);
+      border-radius: 2px;
+      margin-bottom: 20px;
+    }
+    .info-card-title { font-family: var(--serif); font-size: 1.1rem; font-weight: 400; margin-bottom: 10px; }
+    .info-card p { font-size: .88rem; font-weight: 300; color: #6a5048; line-height: 1.8; }
+    /* ⬇ REPLACE booking form fields to match your booking logic / tool */
+    /* ⬇ REPLACE info cards with real contact details, booking policy, min. spend */
+
+    /* ══════════════════════════════════════════════════════════
+       REVIEWS
+    ══════════════════════════════════════════════════════════ */
+    .reviews { padding: 120px 0; background: var(--mist); }
+    .reviews-header { text-align: center; margin-bottom: 64px; }
+    .reviews-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    .review-card {
+      background: var(--paper);
+      padding: 36px;
+      border-radius: 2px;
+      border: 1px solid rgba(200,160,140,.2);
+    }
+    .review-stars { color: var(--gold); font-size: 1rem; margin-bottom: 16px; letter-spacing: .1em; }
+    .review-text { font-family: var(--serif); font-size: 1.05rem; font-weight: 300; font-style: italic; margin-bottom: 24px; line-height: 1.75; color: #4a3028; }
+    .review-author { font-size: .8rem; font-weight: 500; letter-spacing: .06em; text-transform: uppercase; color: #8a6858; }
+    /* ⬇ REPLACE review cards with real client testimonials */
+
+    /* ══════════════════════════════════════════════════════════
+       FOOTER
+    ══════════════════════════════════════════════════════════ */
+    .footer { background: var(--ink); color: var(--paper); padding: 72px 0 32px; }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 48px;
+      padding-bottom: 48px;
+      border-bottom: 1px solid rgba(255,255,255,.1);
+    }
+    .footer-brand .nav-logo { color: var(--paper); margin-bottom: 16px; display: block; }
+    .footer-desc { font-size: .88rem; font-weight: 300; opacity: .55; line-height: 1.8; max-width: 260px; }
+    .footer-col-title { font-size: .72rem; letter-spacing: .18em; text-transform: uppercase; font-weight: 500; color: var(--blush); margin-bottom: 20px; }
+    .footer-links { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .footer-links a { font-size: .88rem; font-weight: 300; opacity: .6; transition: opacity var(--transition); }
+    .footer-links a:hover { opacity: 1; }
+    .footer-bottom { padding-top: 32px; display: flex; align-items: center; justify-content: space-between; font-size: .8rem; opacity: .4; }
+    /* ⬇ REPLACE footer links, socials, brand description */
+
+    /* ══════════════════════════════════════════════════════════
+       RESPONSIVE
+    ══════════════════════════════════════════════════════════ */
+    @media (max-width: 900px) {
+      .hero, .about-grid, .area-grid, .booking-inner,
+      .bundles-grid, .pricing-cols, .footer-grid {
+        grid-template-columns: 1fr;
+      }
+      .hero-visual { min-height: 320px; position: relative; }
+      .hero-content { padding: 60px 0; }
+      .services-grid, .reviews-grid { grid-template-columns: 1fr 1fr; }
+      .faq-grid { grid-template-columns: 1fr; }
+      .field-row { grid-template-columns: 1fr; }
+      .nav-links { display: none; }
+    }
+    @media (max-width: 560px) {
+      .services-grid, .reviews-grid { grid-template-columns: 1fr; }
+    }
+
+    /* ── Fade-in animation ─────────────────────────────────── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .fade-in { animation: fadeUp .7s ease both; }
+    .fade-in-2 { animation: fadeUp .7s .15s ease both; }
+    .fade-in-3 { animation: fadeUp .7s .3s ease both; }
+  </style>
+</head>
+<body>
+
+  <!-- ═══════════════════════════════════ NAV ════════════════ -->
+  <nav class="nav">
+    <div class="container nav-inner">
+      <a href="#" class="nav-logo">[Brand<span>Name</span>]</a>
+      <ul class="nav-links">
+        <li><a href="#services">Services</a></li>
+        <li><a href="#bundles">Bundles</a></li>
+        <li><a href="#pricing">Pricing</a></li>
+        <li><a href="#area">Area</a></li>
+        <li><a href="#faq">FAQ</a></li>
+      </ul>
+      <a href="#booking" class="btn btn-primary nav-cta">Book Now</a>
+    </div>
+  </nav>
+
+  <!-- ════════════════════════════════ HERO ══════════════════ -->
+  <section class="hero">
+    <div class="container hero-content fade-in">
+      <p class="hero-eyebrow">✦ Mobile Beauty · [City/Area] · Since [Year]</p>
+      <!-- ⬇ REPLACE with homepage_agent.py headline output -->
+      <h1 class="hero-headline">
+        [Hero Headline]<em>[Italic Accent Line]</em>
+      </h1>
+      <p class="hero-sub">
+        <!-- ⬇ REPLACE with homepage_agent.py subheadline/description -->
+        [Hero subheadline: 2-3 sentences describing the mobile beauty service, convenience, and quality.]
+      </p>
+      <div class="hero-actions">
+        <a href="#booking" class="btn btn-primary">Book Your Treatment</a>
+        <a href="#services" class="btn btn-outline">See All Services</a>
+      </div>
+      <div class="hero-badge">
+        ⭐ <b>[Rating] stars</b> · [Number] happy clients · Min. booking £[30–50]
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="hero-img-wrap">
+        <!-- ⬇ REPLACE with actual hero image -->
+        <div class="placeholder" style="height:100%; border-radius:0; border:none;">
+          [HERO IMAGE — beauty/lifestyle photo]
+        </div>
+      </div>
+      <div class="hero-overlay"></div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════ TRUST STRIP ════════════════ -->
+  <div class="trust-strip">
+    <div class="container trust-inner">
+      <!-- ⬇ REPLACE with real USPs from pipeline outputs -->
+      <div class="trust-item">✦ Fully Mobile Service</div>
+      <div class="trust-dot"></div>
+      <div class="trust-item">✦ [Qualification / Insured]</div>
+      <div class="trust-dot"></div>
+      <div class="trust-item">✦ Same-Day Bookings Available</div>
+      <div class="trust-dot"></div>
+      <div class="trust-item">✦ Min. Booking £[30–50]</div>
+    </div>
+  </div>
+
+  <!-- ════════════════════════════════ ABOUT ════════════════ -->
+  <section class="about">
+    <div class="container about-grid">
+      <div class="about-img" style="position:relative;">
+        <!-- ⬇ REPLACE with brand/therapist photo -->
+        <div class="about-img-inner placeholder">[ABOUT / BRAND IMAGE]</div>
+        <div class="about-accent"></div>
+      </div>
+      <div>
+        <span class="tag">About the Business</span>
+        <h2 class="section-title">Beauty that <em>comes to you</em></h2>
+        <!-- ⬇ REPLACE with homepage_agent.py about section output -->
+        <p class="body-text">
+          [About paragraph 1 — introduce the business, the therapist, the mission.]
+        </p>
+        <br />
+        <p class="body-text">
+          [About paragraph 2 — why mobile beauty, what makes you different.]
+        </p>
+        <br />
+        <a href="#booking" class="btn btn-rose" style="margin-top:12px;">Book a Treatment</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════ SERVICES ════════════════ -->
+  <section class="services" id="services">
+    <div class="container">
+      <div class="services-header">
+        <span class="tag">What We Offer</span>
+        <h2 class="section-title">Our <em>Treatments</em></h2>
+        <p class="body-text">
+          <!-- ⬇ REPLACE with services_agent output intro text -->
+          [Short intro sentence about the service range — waxing and pedicure treatments.]
+        </p>
+      </div>
+
+      <div class="services-tabs">
+        <button class="tab-btn active">All Treatments</button>
+        <button class="tab-btn">Waxing</button>
+        <button class="tab-btn">Pedicure</button>
+      </div>
+
+      <!-- ⬇ REPLACE cards with services from services.json + pricing.json -->
+      <!-- WAXING CARD 1 -->
+      <div class="services-grid">
+        <div class="service-card">
+          <div class="service-card-img placeholder">[SERVICE IMAGE — Hollywood Wax]</div>
+          <div class="service-card-body">
+            <h3 class="service-name">Hollywood Wax</h3>
+            <p class="service-desc">[Short description of the Hollywood wax treatment — 1-2 sentences.]</p>
+            <div class="service-meta">
+              <span class="service-price">£35</span>
+              <span class="service-duration">[Duration] mins</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- WAXING CARD 2 -->
+        <div class="service-card">
+          <div class="service-card-img placeholder">[SERVICE IMAGE — Leg Wax]</div>
+          <div class="service-card-body">
+            <h3 class="service-name">Leg Wax</h3>
+            <p class="service-desc">[Short description of leg wax — 1-2 sentences.]</p>
+            <div class="service-meta">
+              <span class="service-price">£[Price]</span>
+              <span class="service-duration">[Duration] mins</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- WAXING CARD 3 -->
+        <div class="service-card">
+          <div class="service-card-img placeholder">[SERVICE IMAGE — Underarm Wax]</div>
+          <div class="service-card-body">
+            <h3 class="service-name">Underarm Wax</h3>
+            <p class="service-desc">[Short description — 1-2 sentences.]</p>
+            <div class="service-meta">
+              <span class="service-price">£[Price]</span>
+              <span class="service-duration">[Duration] mins</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- PEDICURE CARD 1 -->
+        <div class="service-card">
+          <div class="service-card-img placeholder">[SERVICE IMAGE — Classic Pedicure]</div>
+          <div class="service-card-body">
+            <h3 class="service-name">Classic Pedicure</h3>
+            <p class="service-desc">[Short description — 1-2 sentences.]</p>
+            <div class="service-meta">
+              <span class="service-price">£30</span>
+              <span class="service-duration">[Duration] mins</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- PEDICURE CARD 2 -->
+        <div class="service-card">
+          <div class="service-card-img placeholder">[SERVICE IMAGE — Gel Pedicure]</div>
+          <div class="service-card-body">
+            <h3 class="service-name">Gel Pedicure</h3>
+            <p class="service-desc">[Short description — 1-2 sentences.]</p>
+            <div class="service-meta">
+              <span class="service-price">£[Price]</span>
+              <span class="service-duration">[Duration] mins</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- PEDICURE CARD 3 -->
+        <div class="service-card">
+          <div class="service-card-img placeholder">[SERVICE IMAGE — Luxury Pedicure]</div>
+          <div class="service-card-body">
+            <h3 class="service-name">Luxury Pedicure</h3>
+            <p class="service-desc">[Short description — 1-2 sentences.]</p>
+            <div class="service-meta">
+              <span class="service-price">£[Price]</span>
+              <span class="service-duration">[Duration] mins</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- ⬆ ADD more cards here if services.json has additional items -->
+    </div>
+  </section>
+
+  <!-- ════════════════════════════ BUNDLES ══════════════════ -->
+  <section class="bundles" id="bundles">
+    <div class="container">
+      <span class="tag">Save More</span>
+      <h2 class="section-title">Treatment <em>Bundles</em></h2>
+      <p class="body-text">
+        <!-- ⬇ REPLACE with offer_agent.py bundle intro text -->
+        [Bundle section intro — 1-2 sentences explaining the value of booking treatments together.]
+      </p>
+
+      <div class="bundles-grid">
+        <!-- BUNDLE 1 — example from bundles.json -->
+        <div class="bundle-card bundle-card-light">
+          <p class="bundle-tag">Most Popular</p>
+          <h3 class="bundle-name">Hollywood + Pedicure Bundle</h3>
+          <p class="bundle-desc">[1-2 sentences describing what's included and why it's great value.]</p>
+          <ul class="bundle-includes">
+            <li><span>Hollywood Wax</span><span>£35</span></li>
+            <li><span>Classic Pedicure</span><span>£30</span></li>
+            <li><span>You save</span><span style="color:var(--rose);">£10</span></li>
+          </ul>
+          <div class="bundle-price-row">
+            <span class="bundle-price-now">£55</span>
+            <span class="bundle-price-was">£65</span>
+            <span class="bundle-saving">Save £10</span>
+          </div>
+          <a href="#booking" class="btn btn-primary">Book Bundle</a>
+        </div>
+
+        <!-- BUNDLE 2 — add from bundles.json -->
+        <div class="bundle-card bundle-card-dark">
+          <p class="bundle-tag">Best Value</p>
+          <h3 class="bundle-name">[Bundle Name]</h3>
+          <p class="bundle-desc">[Bundle description from offer_agent.py output.]</p>
+          <ul class="bundle-includes" style="border-color: rgba(255,255,255,.1);">
+            <li style="border-color: rgba(255,255,255,.1);"><span>[Service 1]</span><span>£[xx]</span></li>
+            <li style="border-color: rgba(255,255,255,.1);"><span>[Service 2]</span><span>£[xx]</span></li>
+            <li style="border-color: rgba(255,255,255,.1);"><span>You save</span><span style="color:var(--blush);">£[xx]</span></li>
+          </ul>
+          <div class="bundle-price-row">
+            <span class="bundle-price-now">£[xx]</span>
+            <span class="bundle-price-was" style="color:rgba(255,255,255,.4);">£[xx]</span>
+            <span class="bundle-saving">Save £[xx]</span>
+          </div>
+          <a href="#booking" class="btn btn-rose">Book Bundle</a>
+        </div>
+        <!-- ⬆ ADD more bundle cards from bundles.json as needed -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════ PRICING ════════════════ -->
+  <section class="pricing" id="pricing">
+    <div class="container">
+      <div class="pricing-header">
+        <span class="tag">Transparent Pricing</span>
+        <h2 class="section-title">Full <em>Price List</em></h2>
+      </div>
+      <div class="pricing-cols">
+        <!-- WAXING PRICES — populate from pricing.json -->
+        <div>
+          <h3 class="pricing-col-title">Waxing</h3>
+          <table class="pricing-table">
+            <tr><td>Hollywood Wax</td><td>£35</td></tr>
+            <tr><td>Leg Wax (Full)</td><td>£[Price]</td></tr>
+            <tr><td>Leg Wax (Half)</td><td>£[Price]</td></tr>
+            <tr><td>Underarm Wax</td><td>£[Price]</td></tr>
+            <!-- ⬆ ADD all waxing items from pricing.json -->
+          </table>
+        </div>
+
+        <!-- PEDICURE PRICES — populate from pricing.json -->
+        <div>
+          <h3 class="pricing-col-title">Pedicure</h3>
+          <table class="pricing-table">
+            <tr><td>Classic Pedicure</td><td>£30</td></tr>
+            <tr><td>Gel Pedicure</td><td>£[Price]</td></tr>
+            <tr><td>Luxury Pedicure</td><td>£[Price]</td></tr>
+            <!-- ⬆ ADD all pedicure items from pricing.json -->
+          </table>
+        </div>
+      </div>
+
+      <div class="pricing-note">
+        ⚠️ <strong>Minimum booking value:</strong> £[30–50]. Travel charges may apply depending on your postcode. 
+        Contact us to confirm availability in your area. All prices include products and equipment.
+        <!-- ⬇ REPLACE with actual business constraints from doc section 6 -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════ SERVICE AREA ══════════════ -->
+  <section class="area" id="area">
+    <div class="container area-grid">
+      <div>
+        <span class="tag">Where We Come To You</span>
+        <h2 class="section-title">Our <em>Service Area</em></h2>
+        <p class="body-text">
+          <!-- ⬇ REPLACE with area description from service_area.json -->
+          [Area description — explain which towns, postcodes, or radius is covered. Mention travel time considerations.]
+        </p>
+        <ul class="area-list">
+          <!-- ⬇ REPLACE with locations from service_area.json -->
+          <li>[Town / Area 1]</li>
+          <li>[Town / Area 2]</li>
+          <li>[Town / Area 3]</li>
+          <li>[Town / Area 4]</li>
+          <li>[Town / Area 5 — add more as needed]</li>
+        </ul>
+        <div class="area-callout">
+          📍 Not sure if we cover your postcode? <a href="#booking" style="color:var(--rose);font-weight:500;">Drop us a message</a> and we'll confirm within [X] hours.
+        </div>
+      </div>
+      <!-- ⬇ REPLACE with embedded Google Map or a map image -->
+      <div class="area-map placeholder">[MAP — embed Google Map or image of service area]</div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════ FAQ ════════════════ -->
+  <section class="faq" id="faq">
+    <div class="container">
+      <span class="tag" style="color:var(--blush);">Frequently Asked</span>
+      <h2 class="section-title" style="color:var(--paper);">Your <em style="color:var(--blush);">Questions</em> Answered</h2>
+      <!-- ⬇ REPLACE all FAQ items with output from faq_agent.py -->
+      <div class="faq-grid">
+        <div class="faq-item">
+          <p class="faq-q">[FAQ Question 1 — e.g. What areas do you cover?] <span>+</span></p>
+          <p class="faq-a">[FAQ Answer 1 from faq_agent output.]</p>
+        </div>
+        <div class="faq-item">
+          <p class="faq-q">[FAQ Question 2 — e.g. What is your minimum booking?] <span>+</span></p>
+          <p class="faq-a">[FAQ Answer 2.]</p>
+        </div>
+        <div class="faq-item">
+          <p class="faq-q">[FAQ Question 3 — e.g. Do I need to prepare anything?] <span>+</span></p>
+          <p class="faq-a">[FAQ Answer 3.]</p>
+        </div>
+        <div class="faq-item">
+          <p class="faq-q">[FAQ Question 4 — e.g. How long do treatments take?] <span>+</span></p>
+          <p class="faq-a">[FAQ Answer 4.]</p>
+        </div>
+        <div class="faq-item">
+          <p class="faq-q">[FAQ Question 5 — e.g. How do I pay?] <span>+</span></p>
+          <p class="faq-a">[FAQ Answer 5.]</p>
+        </div>
+        <div class="faq-item">
+          <p class="faq-q">[FAQ Question 6 — e.g. What's your cancellation policy?] <span>+</span></p>
+          <p class="faq-a">[FAQ Answer 6.]</p>
+        </div>
+        <!-- ⬆ ADD more FAQ items from faq_agent.py output -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════ REVIEWS ════════════════ -->
+  <section class="reviews">
+    <div class="container">
+      <div class="reviews-header">
+        <span class="tag">Client Love</span>
+        <h2 class="section-title">What They're <em>Saying</em></h2>
+      </div>
+      <!-- ⬇ REPLACE with real client testimonials -->
+      <div class="reviews-grid">
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">"[Client review text — 2-3 sentences praising the service.]"</p>
+          <p class="review-author">[Client Name] · [Location]</p>
+        </div>
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">"[Client review text — 2-3 sentences.]"</p>
+          <p class="review-author">[Client Name] · [Location]</p>
+        </div>
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">"[Client review text — 2-3 sentences.]"</p>
+          <p class="review-author">[Client Name] · [Location]</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════ BOOKING ══════════════════ -->
+  <section class="booking" id="booking">
+    <div class="container">
+      <span class="tag">Reserve Your Slot</span>
+      <h2 class="section-title" style="margin-bottom:48px;">Book Your <em>Treatment</em></h2>
+      <div class="booking-inner">
+        <!-- ⬇ REPLACE/EXTEND this form to connect with your booking system -->
+        <div class="booking-form">
+          <div class="field-row">
+            <div class="field">
+              <label>First Name</label>
+              <input type="text" placeholder="[Your name]" />
+            </div>
+            <div class="field">
+              <label>Phone / WhatsApp</label>
+              <input type="tel" placeholder="[Your number]" />
+            </div>
+          </div>
+          <div class="field">
+            <label>Email Address</label>
+            <input type="email" placeholder="[Your email]" />
+          </div>
+          <div class="field">
+            <label>Your Postcode</label>
+            <input type="text" placeholder="[e.g. SW1A 1AA]" />
+          </div>
+          <div class="field">
+            <label>Treatment</label>
+            <!-- ⬇ REPLACE options with services from services.json + bundles.json -->
+            <select>
+              <option>Hollywood Wax — £35</option>
+              <option>Leg Wax — £[xx]</option>
+              <option>Underarm Wax — £[xx]</option>
+              <option>Classic Pedicure — £30</option>
+              <option>Gel Pedicure — £[xx]</option>
+              <option>Luxury Pedicure — £[xx]</option>
+              <option>Hollywood + Pedicure Bundle — £55</option>
+              <option>[Bundle 2 Name] — £[xx]</option>
+            </select>
+          </div>
+          <div class="field-row">
+            <div class="field">
+              <label>Preferred Date</label>
+              <input type="date" />
+            </div>
+            <div class="field">
+              <label>Preferred Time</label>
+              <input type="time" />
+            </div>
+          </div>
+          <div class="field">
+            <label>Additional Notes</label>
+            <textarea placeholder="[Any notes, allergies, access info…]"></textarea>
+          </div>
+          <button type="button" class="btn btn-primary" style="width:100%; justify-content:center; padding:16px;">
+            Request Booking →
+          </button>
+          <!-- ⬇ REPLACE button with actual form submission handler / booking API -->
+        </div>
+
+        <div class="booking-info">
+          <div class="info-card">
+            <h4 class="info-card-title">📋 Booking Policy</h4>
+            <p>[Describe booking policy — confirmation time, deposit requirement if any, min. notice period.]</p>
+          </div>
+          <div class="info-card">
+            <h4 class="info-card-title">💰 Payment</h4>
+            <p>[List accepted payment methods — bank transfer, cash, card reader, etc. Minimum booking value: £[30–50].]</p>
+          </div>
+          <div class="info-card">
+            <h4 class="info-card-title">❌ Cancellation</h4>
+            <p>[Describe cancellation policy — e.g. 24 hours notice required to avoid a fee.]</p>
+          </div>
+          <div class="info-card">
+            <h4 class="info-card-title">📱 Prefer to message?</h4>
+            <p>WhatsApp: <a href="https://wa.me/[NUMBER]" style="color:var(--rose);font-weight:500;">[+44 xxx xxxx xxxx]</a><br/>
+            Instagram: <a href="https://instagram.com/[HANDLE]" style="color:var(--rose);font-weight:500;">@[handle]</a></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════ FOOTER ════════════════ -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="#" class="nav-logo">[Brand<span style="color:var(--rose);font-style:italic;">Name</span>]</a>
+          <p class="footer-desc">
+            <!-- ⬇ REPLACE with homepage_agent.py footer tagline -->
+            [Short 2-3 sentence brand description for the footer.]
+          </p>
+        </div>
+        <div>
+          <p class="footer-col-title">Treatments</p>
+          <ul class="footer-links">
+            <!-- ⬇ REPLACE with real service links from services.json -->
+            <li><a href="#services">Hollywood Wax</a></li>
+            <li><a href="#services">Leg Wax</a></li>
+            <li><a href="#services">Underarm Wax</a></li>
+            <li><a href="#services">Classic Pedicure</a></li>
+            <li><a href="#services">Gel Pedicure</a></li>
+            <li><a href="#services">Luxury Pedicure</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="footer-col-title">Info</p>
+          <ul class="footer-links">
+            <li><a href="#bundles">Bundles & Offers</a></li>
+            <li><a href="#pricing">Price List</a></li>
+            <li><a href="#area">Service Area</a></li>
+            <li><a href="#faq">FAQ</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="footer-col-title">Connect</p>
+          <ul class="footer-links">
+            <!-- ⬇ REPLACE with real social / contact links -->
+            <li><a href="#">Instagram</a></li>
+            <li><a href="#">Facebook</a></li>
+            <li><a href="#">WhatsApp</a></li>
+            <li><a href="#">[Email Address]</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© [Year] [Brand Name] — Mobile Beauty. All rights reserved.</span>
+        <span>[Privacy Policy] · [Terms]</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ══════════════════════════ JS ══════════════════════════ -->
+  <script>
+    // FAQ accordion toggle
+    document.querySelectorAll('.faq-item').forEach(item => {
+      item.addEventListener('click', () => {
+        const answer = item.querySelector('.faq-a');
+        const icon   = item.querySelector('.faq-q span');
+        const open   = answer.style.display === 'block';
+        document.querySelectorAll('.faq-a').forEach(a => a.style.display = 'none');
+        document.querySelectorAll('.faq-q span').forEach(s => s.textContent = '+');
+        if (!open) { answer.style.display = 'block'; icon.textContent = '−'; }
+      });
+    });
+    document.querySelectorAll('.faq-a').forEach(a => a.style.display = 'none');
+
+    // Service tabs (stub — wire up to real filter logic)
+    document.querySelectorAll('.tab-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        // ⬇ ADD actual filter logic here based on data attributes
+      });
+    });
+  </script>
+
+</body>
+</html>
