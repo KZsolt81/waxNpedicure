@@ -1,0 +1,163 @@
+Project Summary
+What Was Built
+A production-ready Next.js website skeleton for a South East London mobile waxing and pedicure business. The site is live on Vercel and the code is on GitHub at claude/beauty-website-mobile-u7tB2.
+
+Tech Stack
+Next.js 16 + React 19 + TypeScript — modern, maintainable framework
+Tailwind CSS 4 — styling
+Vercel — hosting and auto-deployment
+GitHub — version control
+What Was Delivered
+10 pages:
+Homepage · Services · Pricing · Bundles · About · Hygiene & Trust · FAQ · Service Areas · Contact/Booking · Offers
+
+12 reusable components:
+Navbar · Footer · ServiceCard · BundleCard · FAQItem · ReviewCard · ContactForm · WhatsAppButton · and more
+
+8 JSON content files — all business content is separated from code so it can be edited without touching a single line of TypeScript
+
+SEO infrastructure — per-page metadata, sitemap.xml, robots.txt
+
+Contact form — with client-side validation, ready for email API wiring
+
+Design
+The original HTML skeleton in the repo had excellent visual design — warm off-white background, Cormorant Garamond serif headings, Jost sans-serif body, rose/gold accent colours. That entire visual language was preserved and translated into the new stack rather than discarded.
+
+What Needs Human Input Before Going Live
+What - Where
+Business name and WhatsApp - content/business-info.json
+Real prices - content/pricing.json
+Real service areas / postcodes - content/service-areas.json
+Your story / about text - src/app/about/page.tsx
+Real client testimonials - content/testimonials.json
+Photos (hero, about, services) - public/images/
+Logo - public/logos/ + src/components/Navbar.tsx
+Gmail enquiry environment values - .env.local / deployment environment variables
+Legal review/final wording for Privacy Policy & Terms - src/app/privacy/page.tsx · src/app/terms/page.tsx
+Your domain name - Vercel dashboard
+
+Notes for the Next AI Session
+All [placeholder] text in square brackets throughout the codebase marks content that needs replacing with real business data
+The JSON files are the single source of truth — edit those, not the page files, for content changes
+docs/maintenance-notes.txt and docs/branding-notes.txt in the repo have detailed guidance
+The question form posts to /api/contact and sends email through Gmail SMTP (no public business email shown on site)
+Images use <ImagePlaceholder> components — swap each one for a Next.js <Image> tag pointing to a real photo in public/images/
+Design tokens (colours, fonts) are in src/app/globals.css as CSS variables
+
+Latest Updates
+2026-05-10 15:32:19 +01:00
+- Privacy page updated from placeholder to structured GDPR-style content and wired to business email data with fallback handling.
+- Terms page updated from placeholder to structured booking/service terms and wired to business data (minimum booking, cancellation policy, payment methods).
+- Lint cleanup completed in unrelated pages/components by removing unused imports/variables:
+  src/app/areas/page.tsx, src/app/offers/page.tsx, src/app/services/page.tsx, src/components/ServiceCard.tsx.
+- Verification completed: npm run lint (clean), npm run build (success; all app routes statically generated).
+
+## 2026-05-10 18:23 - Square Appointments / no-show protection update
+- Updated booking flow wording to use Square Appointments.
+- Removed/replaced PayPal deposit/manual payment request wording.
+- Added 24-hour cancellation policy and 50% late cancellation/no-show fee wording.
+- Files changed:
+  - .env.local.example
+  - content/business-info.json
+  - content/faq.json
+  - src/lib/booking.ts
+  - src/components/Btn.tsx
+  - src/components/Navbar.tsx
+  - src/components/BundleCard.tsx
+  - src/components/ContactForm.tsx
+  - src/app/layout.tsx
+  - src/app/page.tsx
+  - src/app/about/page.tsx
+  - src/app/bundles/page.tsx
+  - src/app/services/page.tsx
+  - src/app/hygiene/page.tsx
+  - src/app/offers/page.tsx
+  - src/app/contact/page.tsx
+  - src/app/faq/page.tsx
+  - src/app/terms/page.tsx
+- Booking/payment policy decision:
+  "Square Appointments will be used for booking. No upfront payment is taken. Card details may be required for no-show protection. Late cancellation/no-show policy is 24 hours and fee is 50% of selected treatment price."
+- TODO:
+  - Paste real Square booking URL/embed code.
+  - Configure Square Appointments card/no-show protection settings.
+  - Test customer booking journey.
+
+## 2026-05-10 20:47 - Contact simplification / WhatsApp-first update
+- Removed public phone number and email address from customer-facing website.
+- Kept existing WhatsApp chat as the main direct contact option.
+- Checked/created placeholder connector for WhatsApp chat URL.
+- Checked/created placeholder connector for Square booking URL.
+- Changed contact form to a question-only enquiry form.
+- Kept booking separate through Square Appointments.
+- Files changed:
+  - .env.local.example
+  - content/faq.json
+  - src/lib/booking.ts
+  - src/components/WhatsAppButton.tsx
+  - src/components/Footer.tsx
+  - src/components/ContactForm.tsx
+  - src/components/Navbar.tsx
+  - src/components/BundleCard.tsx
+  - src/app/page.tsx
+  - src/app/about/page.tsx
+  - src/app/bundles/page.tsx
+  - src/app/services/page.tsx
+  - src/app/hygiene/page.tsx
+  - src/app/offers/page.tsx
+  - src/app/faq/page.tsx
+  - src/app/contact/page.tsx
+  - src/app/privacy/page.tsx
+- Contact decision:
+  "Public phone number and email address removed from customer-facing website. Existing WhatsApp chat remains the main direct contact method."
+- Placeholder/config decision:
+  "Checked/created central placeholder connectors for WhatsApp chat URL and Square booking URL."
+- Form decision:
+  "Contact form changed to a question-only enquiry form. Booking should happen through Square Appointments, not through the contact form."
+- Booking/payment policy reminder:
+  "Square Appointments remains the booking flow. No upfront payment is taken. Card details may be required for no-show protection. Late cancellation/no-show policy is 24 hours and fee is 50% of selected treatment price."
+- TODO:
+  - Replace PASTE_WHATSAPP_CHAT_URL_HERE with the real WhatsApp wa.me link if not already done.
+  - Replace PASTE_SQUARE_BOOKING_URL_HERE with the real Square booking URL.
+  - Confirm Square Appointments settings match the website policy.
+  - Test WhatsApp button on mobile and desktop.
+  - Test question form submission.
+  - Test Book Now flow.
+
+## 2026-05-10 20:56 - Correction update (business-info + notes location)
+- Updated `content/business-info.json` to align with contact policy by removing configured public phone/email values:
+  - `"phone": ""`
+  - `"email": ""`
+- Confirmed notes are maintained in `docs/AI_notes.txt` (no root `AI_notes.txt` file present).
+
+## 2026-05-10 21:55 - Gmail SMTP contact endpoint update
+- Implemented internal contact endpoint at `src/app/api/contact/route.ts`.
+- Wired question-only form (`src/components/ContactForm.tsx`) to submit to `/api/contact`.
+- Delivery method: Gmail SMTP via `nodemailer`.
+- Required environment variables:
+  - `SMTP_HOST`
+  - `SMTP_PORT`
+  - `SMTP_SECURE`
+  - `SMTP_USER`
+  - `SMTP_PASSWORD`
+  - `ENQUIRY_TO_EMAIL`
+- Security/content rule:
+  - Business email address is not rendered publicly on customer-facing pages.
+- Gmail setup note:
+  - Gmail App Password requires Google 2-Step Verification enabled on the sending account.
+- Manual deployment steps:
+  - Set `SMTP_HOST`, `SMTP_PORT`, `SMTP_SECURE`, `SMTP_USER`, `SMTP_PASSWORD`, and `ENQUIRY_TO_EMAIL` in hosting environment variables.
+  - Redeploy and test question form submission end-to-end.
+
+## 2026-05-10 22:11 - SMTP variable standardisation update
+- Reviewed existing contact API implementation and confirmed it was working safely.
+- Standardised mail transport environment variables to provider-agnostic SMTP names.
+- Contact endpoint now reads:
+  - `SMTP_HOST`
+  - `SMTP_PORT`
+  - `SMTP_SECURE`
+  - `SMTP_USER`
+  - `SMTP_PASSWORD`
+  - `ENQUIRY_TO_EMAIL`
+- Gmail compatibility note:
+  - Use `SMTP_HOST=smtp.gmail.com`, `SMTP_PORT=465`, `SMTP_SECURE=true`.
+  - Gmail requires an App Password (not normal account password) and 2-Step Verification enabled.
