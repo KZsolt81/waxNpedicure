@@ -10,21 +10,18 @@ type FormState = "idle" | "submitting" | "success" | "error";
 
 interface FieldErrors {
   name?: string;
-  phone?: string;
-  email?: string;
+  replyContact?: string;
   postcode?: string;
-  service?: string;
-  preferredDate?: string;
+  preferredLanguage?: string;
+  question?: string;
 }
 
 function validate(data: Record<string, string>): FieldErrors {
   const errors: FieldErrors = {};
   if (!data.name?.trim()) errors.name = "Please enter your name.";
-  if (!data.phone?.trim()) errors.phone = "Please enter a phone or WhatsApp number.";
-  if (!data.email?.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email))
-    errors.email = "Please enter a valid email address.";
-  if (!data.postcode?.trim()) errors.postcode = "Please enter your postcode.";
-  if (!data.service) errors.service = "Please select a treatment.";
+  if (!data.replyContact?.trim())
+    errors.replyContact = "Please enter your email or WhatsApp number so we can reply.";
+  if (!data.question?.trim()) errors.question = "Please enter your question.";
   return errors;
 }
 
@@ -55,6 +52,7 @@ const labelStyle: React.CSSProperties = {
 export default function ContactForm({ serviceOptions }: Props) {
   const [formState, setFormState] = useState<FormState>("idle");
   const [errors, setErrors] = useState<FieldErrors>({});
+  const [serverMessage, setServerMessage] = useState("");
 
   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -67,12 +65,37 @@ export default function ContactForm({ serviceOptions }: Props) {
       return;
     }
     setErrors({});
+    setServerMessage("");
     setFormState("submitting");
 
-    // NOTE: Replace this timeout with a real fetch() call to your form endpoint or email API.
-    // Example: await fetch("/api/contact", { method: "POST", body: JSON.stringify(data) })
-    await new Promise((r) => setTimeout(r, 1000));
-    setFormState("success");
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: data.name,
+          replyContact: data.replyContact,
+          service: data.service,
+          postcode: data.postcode,
+          preferredLanguage: data.preferredLanguage,
+          question: data.question,
+          website: data.website, // honeypot
+        }),
+      });
+
+      const result = (await response.json()) as { ok: boolean; message?: string };
+      if (!response.ok || !result.ok) {
+        setFormState("error");
+        setServerMessage(result.message || "Something went wrong. Please try again shortly.");
+        return;
+      }
+
+      setFormState("success");
+      form.reset();
+    } catch {
+      setFormState("error");
+      setServerMessage("Something went wrong. Please try again shortly.");
+    }
   }
 
   if (formState === "success") {
@@ -86,10 +109,10 @@ export default function ContactForm({ serviceOptions }: Props) {
           className="font-light text-[1.6rem] mb-3"
           style={{ fontFamily: "var(--font-serif), Georgia, serif", color: "var(--ink)" }}
         >
-          Request Received
+          Question Sent
         </h3>
         <p className="text-sm font-light leading-relaxed" style={{ color: "#6a5048" }}>
-          Thank you for getting in touch. We&rsquo;ll confirm your booking within a few hours. For urgent requests, please message via WhatsApp.
+          Thank you for getting in touch. We&rsquo;ll reply shortly regarding your enquiry.
         </p>
       </div>
     );
@@ -98,51 +121,52 @@ export default function ContactForm({ serviceOptions }: Props) {
   return (
     <form onSubmit={handleSubmit} noValidate>
       <div className="flex flex-col gap-4">
-        {/* Name + Phone */}
-        <div className="grid sm:grid-cols-2 gap-4">
-          <div>
-            <label style={labelStyle}>First Name *</label>
-            <input
-              name="name"
-              type="text"
-              placeholder="Your name"
-              style={fieldStyle}
-              onFocus={(e) => (e.target.style.borderColor = "var(--rose)")}
-              onBlur={(e) => (e.target.style.borderColor = "var(--blush)")}
-            />
-            {errors.name && <p className="text-[0.78rem] mt-1" style={{ color: "var(--rose)" }}>{errors.name}</p>}
-          </div>
-          <div>
-            <label style={labelStyle}>Phone / WhatsApp *</label>
-            <input
-              name="phone"
-              type="tel"
-              placeholder="+44 xxx xxxx xxxx"
-              style={fieldStyle}
-              onFocus={(e) => (e.target.style.borderColor = "var(--rose)")}
-              onBlur={(e) => (e.target.style.borderColor = "var(--blush)")}
-            />
-            {errors.phone && <p className="text-[0.78rem] mt-1" style={{ color: "var(--rose)" }}>{errors.phone}</p>}
-          </div>
-        </div>
+        <input type="text" name="website" className="hidden" tabIndex={-1} autoComplete="off" />
 
-        {/* Email */}
         <div>
-          <label style={labelStyle}>Email Address *</label>
+          <label style={labelStyle}>Name *</label>
           <input
-            name="email"
-            type="email"
-            placeholder="your@email.com"
+            name="name"
+            type="text"
+            placeholder="Your name"
             style={fieldStyle}
             onFocus={(e) => (e.target.style.borderColor = "var(--rose)")}
             onBlur={(e) => (e.target.style.borderColor = "var(--blush)")}
           />
-          {errors.email && <p className="text-[0.78rem] mt-1" style={{ color: "var(--rose)" }}>{errors.email}</p>}
+          {errors.name && <p className="text-[0.78rem] mt-1" style={{ color: "var(--rose)" }}>{errors.name}</p>}
         </div>
 
-        {/* Postcode */}
         <div>
-          <label style={labelStyle}>Your Postcode *</label>
+          <label style={labelStyle}>Your Email or WhatsApp Number *</label>
+          <input
+            name="replyContact"
+            type="text"
+            placeholder="you@example.com or +44..."
+            style={fieldStyle}
+            onFocus={(e) => (e.target.style.borderColor = "var(--rose)")}
+            onBlur={(e) => (e.target.style.borderColor = "var(--blush)")}
+          />
+          {errors.replyContact && <p className="text-[0.78rem] mt-1" style={{ color: "var(--rose)" }}>{errors.replyContact}</p>}
+        </div>
+
+        <div>
+          <label style={labelStyle}>Service Interest (Optional)</label>
+          <select
+            name="service"
+            style={fieldStyle}
+            defaultValue=""
+            onFocus={(e) => (e.target.style.borderColor = "var(--rose)")}
+            onBlur={(e) => (e.target.style.borderColor = "var(--blush)")}
+          >
+            <option value="">Select a service (optional)</option>
+            {serviceOptions.map((opt) => (
+              <option key={opt} value={opt}>{opt}</option>
+            ))}
+          </select>
+        </div>
+
+        <div>
+          <label style={labelStyle}>Postcode / Area (Optional)</label>
           <input
             name="postcode"
             type="text"
@@ -151,67 +175,36 @@ export default function ContactForm({ serviceOptions }: Props) {
             onFocus={(e) => (e.target.style.borderColor = "var(--rose)")}
             onBlur={(e) => (e.target.style.borderColor = "var(--blush)")}
           />
-          {errors.postcode && <p className="text-[0.78rem] mt-1" style={{ color: "var(--rose)" }}>{errors.postcode}</p>}
         </div>
 
-        {/* Treatment select */}
         <div>
-          <label style={labelStyle}>Treatment *</label>
-          <select
-            name="service"
+          <label style={labelStyle}>Preferred Language (Optional)</label>
+          <input
+            name="preferredLanguage"
+            type="text"
+            placeholder="e.g. English"
             style={fieldStyle}
-            defaultValue=""
-            onFocus={(e) => (e.target.style.borderColor = "var(--rose)")}
-            onBlur={(e) => (e.target.style.borderColor = "var(--blush)")}
-          >
-            <option value="" disabled>Select a treatment…</option>
-            {serviceOptions.map((opt) => (
-              <option key={opt} value={opt}>{opt}</option>
-            ))}
-          </select>
-          {errors.service && <p className="text-[0.78rem] mt-1" style={{ color: "var(--rose)" }}>{errors.service}</p>}
-        </div>
-
-        {/* Date + Time */}
-        <div className="grid sm:grid-cols-2 gap-4">
-          <div>
-            <label style={labelStyle}>Preferred Date</label>
-            <input
-              name="preferredDate"
-              type="date"
-              style={fieldStyle}
-              onFocus={(e) => (e.target.style.borderColor = "var(--rose)")}
-              onBlur={(e) => (e.target.style.borderColor = "var(--blush)")}
-            />
-          </div>
-          <div>
-            <label style={labelStyle}>Preferred Time</label>
-            <input
-              name="preferredTime"
-              type="time"
-              style={fieldStyle}
-              onFocus={(e) => (e.target.style.borderColor = "var(--rose)")}
-              onBlur={(e) => (e.target.style.borderColor = "var(--blush)")}
-            />
-          </div>
-        </div>
-
-        {/* Notes */}
-        <div>
-          <label style={labelStyle}>Additional Notes</label>
-          <textarea
-            name="notes"
-            placeholder="Any notes, allergies, access info, or questions…"
-            rows={4}
-            style={{ ...fieldStyle, resize: "vertical" }}
             onFocus={(e) => (e.target.style.borderColor = "var(--rose)")}
             onBlur={(e) => (e.target.style.borderColor = "var(--blush)")}
           />
         </div>
 
+        <div>
+          <label style={labelStyle}>Your Question *</label>
+          <textarea
+            name="question"
+            placeholder="Type your question here..."
+            rows={4}
+            style={{ ...fieldStyle, resize: "vertical" }}
+            onFocus={(e) => (e.target.style.borderColor = "var(--rose)")}
+            onBlur={(e) => (e.target.style.borderColor = "var(--blush)")}
+          />
+          {errors.question && <p className="text-[0.78rem] mt-1" style={{ color: "var(--rose)" }}>{errors.question}</p>}
+        </div>
+
         {formState === "error" && (
           <p className="text-sm font-light" style={{ color: "var(--rose)" }}>
-            Something went wrong. Please try again or contact us via WhatsApp.
+            {serverMessage || "Something went wrong. Please try again or contact us via WhatsApp."}
           </p>
         )}
 
@@ -223,11 +216,11 @@ export default function ContactForm({ serviceOptions }: Props) {
           onMouseEnter={(e) => ((e.currentTarget as HTMLButtonElement).style.background = "var(--gold)")}
           onMouseLeave={(e) => ((e.currentTarget as HTMLButtonElement).style.background = "var(--ink)")}
         >
-          {formState === "submitting" ? "Sending…" : "Request Booking →"}
+          {formState === "submitting" ? "Sending…" : "Send Question"}
         </button>
 
         <p className="text-[0.78rem] font-light text-center" style={{ color: "#9a7868" }}>
-          * Required fields. We&rsquo;ll never share your data with third parties.
+          For appointments, please use the Book Now button. This form is for questions only.
         </p>
       </div>
     </form>

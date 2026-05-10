@@ -3,6 +3,7 @@ import Btn from "@/components/Btn";
 import SectionTag from "@/components/SectionTag";
 import SectionTitle from "@/components/SectionTitle";
 import offersData from "../../../content/offers.json";
+import { SQUARE_BOOKING_URL } from "@/lib/booking";
 
 export const metadata: Metadata = {
   title: "Offers & Promotions",
@@ -11,7 +12,6 @@ export const metadata: Metadata = {
 
 export default function OffersPage() {
   const activeOffers = offersData.offers.filter((o) => o.active);
-  const upcomingOffers = offersData.offers.filter((o) => !o.active);
 
   return (
     <>
@@ -73,7 +73,7 @@ export default function OffersPage() {
                         Expires: {offer.expiry.replace(/[\[\]]/g, "")}
                       </p>
                     )}
-                    <Btn href="/contact" variant="primary">Claim Offer</Btn>
+                    <Btn href={SQUARE_BOOKING_URL} variant="primary">Book Now</Btn>
                   </div>
                 ))}
               </div>

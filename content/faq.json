@@ -17,12 +17,17 @@
         {
           "id": "how-to-book",
           "question": "How do I book an appointment?",
-          "answer": "The easiest way is to message us on WhatsApp. You can also use the contact form on this website or send an email. We'll confirm availability and send you a booking confirmation within [X] hours."
+          "answer": "Please use the Book Now button to choose an available appointment through our online booking system."
         },
         {
-          "id": "same-day-booking",
-          "question": "Can I book same-day?",
-          "answer": "Same-day appointments may be available depending on the diary. WhatsApp us to check — we'll always let you know as soon as possible."
+          "id": "ask-before-booking",
+          "question": "Can I ask a question before booking?",
+          "answer": "Yes. You can send a WhatsApp message or use the question form on this page."
+        },
+        {
+          "id": "book-by-phone-email",
+          "question": "Do you take bookings by phone or email?",
+          "answer": "To keep appointments organised and avoid missed details, bookings are handled through the online booking system. For questions, please use WhatsApp or the question form."
         }
       ]
     },
@@ -85,7 +90,7 @@
         {
           "id": "payment-methods",
           "question": "How do I pay?",
-          "answer": "We accept bank transfer (preferred), cash, and card payments via a reader on request. Full payment is due on the day of treatment unless a deposit was agreed at booking."
+          "answer": "No upfront payment is taken when booking. Card details may be required to secure your appointment. The remaining balance is paid after your treatment."
         },
         {
           "id": "minimum-booking",
@@ -95,7 +100,22 @@
         {
           "id": "cancellation",
           "question": "What is your cancellation policy?",
-          "answer": "We ask for at least [24] hours notice if you need to cancel or reschedule. Cancellations with less notice may incur a [50%] charge. We understand life happens — please just let us know as soon as possible."
+          "answer": "You can cancel or reschedule free of charge more than 24 hours before your appointment. If you cancel with less than 24 hours' notice or do not attend, a fee of 50% of the selected treatment price may apply."
+        },
+        {
+          "id": "card-details",
+          "question": "Why do I need to enter card details?",
+          "answer": "This helps protect appointment time and reduce missed bookings. Your card may only be charged if you cancel with less than 24 hours' notice or do not attend."
+        },
+        {
+          "id": "pay-when-booking",
+          "question": "Do I need to pay when booking?",
+          "answer": "No upfront payment is taken when booking. Card details may be required to secure your appointment."
+        },
+        {
+          "id": "when-do-i-pay",
+          "question": "When do I pay for the treatment?",
+          "answer": "The remaining balance is paid after your treatment."
         }
       ]
     }

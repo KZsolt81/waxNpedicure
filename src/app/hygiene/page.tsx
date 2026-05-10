@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Btn from "@/components/Btn";
 import SectionTag from "@/components/SectionTag";
 import SectionTitle from "@/components/SectionTitle";
+import { SQUARE_BOOKING_URL } from "@/lib/booking";
 
 export const metadata: Metadata = {
   title: "Hygiene & Trust",
@@ -145,7 +146,7 @@ export default function HygienePage() {
           </div>
 
           <div className="text-center">
-            <Btn href="/contact" variant="primary">Book With Confidence</Btn>
+            <Btn href={SQUARE_BOOKING_URL} variant="primary">Book Now</Btn>
           </div>
         </div>
       </section>

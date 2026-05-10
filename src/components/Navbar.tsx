@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useState } from "react";
 import businessInfo from "../../content/business-info.json";
+import { SQUARE_BOOKING_URL } from "@/lib/booking";
 
 const navLinks = [
   { href: "/services",  label: "Services" },
@@ -53,8 +54,10 @@ export default function Navbar() {
 
         {/* CTA */}
         <div className="hidden md:block">
-          <Link
-            href="/contact"
+          <a
+            href={SQUARE_BOOKING_URL}
+            target="_blank"
+            rel="noopener noreferrer"
             className="inline-flex items-center gap-2 px-6 py-3 rounded-full text-[0.78rem] font-medium tracking-[0.08em] uppercase transition-colors"
             style={{ background: "var(--ink)", color: "var(--paper)" }}
             onMouseEnter={(e) =>
@@ -65,7 +68,7 @@ export default function Navbar() {
             }
           >
             Book Now
-          </Link>
+          </a>
         </div>
 
         {/* Mobile hamburger */}
@@ -106,14 +109,16 @@ export default function Navbar() {
               {l.label}
             </Link>
           ))}
-          <Link
-            href="/contact"
+          <a
+            href={SQUARE_BOOKING_URL}
+            target="_blank"
+            rel="noopener noreferrer"
             className="mt-2 inline-flex justify-center items-center px-6 py-3 rounded-full text-[0.78rem] font-medium tracking-[0.08em] uppercase"
             style={{ background: "var(--ink)", color: "var(--paper)" }}
             onClick={() => setOpen(false)}
           >
             Book Now
-          </Link>
+          </a>
         </div>
       )}
     </nav>

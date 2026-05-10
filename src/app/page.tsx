@@ -7,8 +7,8 @@ import ServiceCard from "@/components/ServiceCard";
 import BundleCard from "@/components/BundleCard";
 import ReviewCard from "@/components/ReviewCard";
 import FAQItem from "@/components/FAQItem";
-import WhatsAppButton from "@/components/WhatsAppButton";
 import ImagePlaceholder from "@/components/ImagePlaceholder";
+import { SHORT_BOOKING_POLICY, SQUARE_BOOKING_URL } from "@/lib/booking";
 import businessInfo from "../../content/business-info.json";
 import services from "../../content/services.json";
 import pricing from "../../content/pricing.json";
@@ -70,7 +70,7 @@ export default function HomePage() {
             Professional waxing and pedicure treatments delivered to your door in South East London. Fully insured, qualified therapist. No travel stress. Just beautiful results.
           </p>
           <div className="flex flex-wrap gap-4 mb-14 fade-in-2">
-            <Btn href="/contact" variant="primary">Book Your Treatment</Btn>
+            <Btn href={SQUARE_BOOKING_URL} variant="primary">Book Now</Btn>
             <Btn href="/services" variant="outline">See All Services</Btn>
           </div>
           <div
@@ -288,11 +288,14 @@ export default function HomePage() {
             Book Your <em style={{ fontStyle: "italic", color: "var(--gold)" }}>Treatment</em>
           </SectionTitle>
           <p className="text-[0.95rem] font-light leading-[1.8] max-w-[480px] mx-auto mt-2 mb-10" style={{ color: "#5a4840" }}>
-            Message us on WhatsApp for the fastest response, or use the contact form and we&rsquo;ll confirm your booking within a few hours.
+            Book online through Square Appointments in a few clicks.
+          </p>
+          <p className="text-[0.85rem] font-light leading-relaxed max-w-[640px] mx-auto -mt-6 mb-8" style={{ color: "#6a5048" }}>
+            {SHORT_BOOKING_POLICY}
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <WhatsAppButton label="Book via WhatsApp" />
-            <Btn href="/contact" variant="outline">Use Contact Form</Btn>
+            <Btn href={SQUARE_BOOKING_URL} variant="primary">Book Now</Btn>
+            <Btn href="/contact" variant="outline">General Enquiries</Btn>
           </div>
         </div>
       </section>

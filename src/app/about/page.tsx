@@ -4,6 +4,7 @@ import SectionTag from "@/components/SectionTag";
 import SectionTitle from "@/components/SectionTitle";
 import ImagePlaceholder from "@/components/ImagePlaceholder";
 import businessInfo from "../../../content/business-info.json";
+import { SQUARE_BOOKING_URL } from "@/lib/booking";
 
 export const metadata: Metadata = {
   title: "About",
@@ -51,7 +52,7 @@ export default function AboutPage() {
               <p className="text-[0.95rem] font-light leading-[1.8] mb-8" style={{ color: "#5a4840" }}>
                 [About paragraph 3 — your personal touch, what makes your service different, your commitment to clients.]
               </p>
-              <Btn href="/contact" variant="rose">Book With Me</Btn>
+              <Btn href={SQUARE_BOOKING_URL} variant="rose">Book Now</Btn>
             </div>
           </div>
 

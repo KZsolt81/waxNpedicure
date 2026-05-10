@@ -4,6 +4,7 @@ import BundleCard from "@/components/BundleCard";
 import SectionTag from "@/components/SectionTag";
 import SectionTitle from "@/components/SectionTitle";
 import bundlesData from "../../../content/bundles.json";
+import { SQUARE_BOOKING_URL } from "@/lib/booking";
 
 export const metadata: Metadata = {
   title: "Bundles",
@@ -84,7 +85,7 @@ export default function BundlesPage() {
           </div>
 
           <div className="text-center mt-14">
-            <Btn href="/contact" variant="primary">Book a Bundle</Btn>
+            <Btn href={SQUARE_BOOKING_URL} variant="primary">Book Now</Btn>
           </div>
         </div>
       </section>

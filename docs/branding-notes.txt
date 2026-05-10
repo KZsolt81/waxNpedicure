@@ -40,6 +40,19 @@ TONE
   - Avoid exclamation marks in excess
   - Copy should feel calm and confident
 
+CONTACT POSITIONING (UPDATED)
+-----------------------------
+
+- Public contact strategy is now WhatsApp-first for direct questions.
+- Bookings are routed through Square Appointments via "Book Now" CTAs.
+- Contact form is for questions/enquiries only (not booking requests).
+- Avoid publishing direct phone numbers and email addresses in customer-facing UI.
+- Keep trust messaging concise:
+  - No upfront payment
+  - Card details may be required to secure appointment
+  - 24-hour cancellation window
+  - 50% late cancellation/no-show fee may apply
+
 REPLACING PLACEHOLDERS
 -----------------------
 

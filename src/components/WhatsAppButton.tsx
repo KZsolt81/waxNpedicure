@@ -1,4 +1,4 @@
-import businessInfo from "../../content/business-info.json";
+import { getWhatsAppChatUrl } from "@/lib/booking";
 
 interface Props {
   message?: string;
@@ -6,9 +6,8 @@ interface Props {
   fullWidth?: boolean;
 }
 
-export default function WhatsAppButton({ message = "Hi! I'd like to book a treatment.", label = "Message on WhatsApp", fullWidth }: Props) {
-  const number = businessInfo.whatsapp.replace(/\D/g, "");
-  const href = `https://wa.me/${number}?text=${encodeURIComponent(message)}`;
+export default function WhatsAppButton({ message = "Hello, I would like to ask a question about your mobile waxing or pedicure services.", label = "Chat on WhatsApp", fullWidth }: Props) {
+  const href = getWhatsAppChatUrl(message);
 
   return (
     <a

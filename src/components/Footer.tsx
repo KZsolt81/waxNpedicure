@@ -1,5 +1,6 @@
 import Link from "next/link";
 import businessInfo from "../../content/business-info.json";
+import { SQUARE_BOOKING_URL, getWhatsAppChatUrl } from "@/lib/booking";
 
 const treatmentLinks = [
   { href: "/services#waxing",   label: "Waxing" },
@@ -18,6 +19,9 @@ const infoLinks = [
 
 export default function Footer() {
   const year = new Date().getFullYear();
+  const whatsappUrl = getWhatsAppChatUrl(
+    "Hello, I would like to ask a question about your mobile waxing or pedicure services."
+  );
 
   return (
     <footer style={{ background: "var(--ink)", color: "var(--paper)" }}>
@@ -91,6 +95,17 @@ export default function Footer() {
               Connect
             </p>
             <ul className="flex flex-col gap-2 list-none">
+              <li>
+                <a
+                  href={SQUARE_BOOKING_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-sm font-light hover:opacity-100"
+                  style={{ opacity: 0.6 }}
+                >
+                  Book Now
+                </a>
+              </li>
               {businessInfo.instagram !== "[yourbrand]" && (
                 <li>
                   <a href={`https://instagram.com/${businessInfo.instagram.replace("@", "")}`} className="text-sm font-light hover:opacity-100" style={{ opacity: 0.6 }}>
@@ -105,16 +120,13 @@ export default function Footer() {
               )}
               <li>
                 <a
-                  href={`https://wa.me/${businessInfo.whatsapp.replace(/\D/g, "")}`}
+                  href={whatsappUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="text-sm font-light hover:opacity-100"
                   style={{ opacity: 0.6 }}
                 >
-                  WhatsApp
-                </a>
-              </li>
-              <li>
-                <a href={`mailto:${businessInfo.email}`} className="text-sm font-light hover:opacity-100" style={{ opacity: 0.6 }}>
-                  {businessInfo.email}
+                  Chat on WhatsApp
                 </a>
               </li>
             </ul>

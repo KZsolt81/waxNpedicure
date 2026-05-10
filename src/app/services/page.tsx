@@ -1,13 +1,13 @@
 "use client";
 
 import { useState } from "react";
-import type { Metadata } from "next";
 import Btn from "@/components/Btn";
 import SectionTag from "@/components/SectionTag";
 import SectionTitle from "@/components/SectionTitle";
 import ServiceCard from "@/components/ServiceCard";
 import servicesData from "../../../content/services.json";
 import pricingData from "../../../content/pricing.json";
+import { SQUARE_BOOKING_URL } from "@/lib/booking";
 
 function getPriceForService(serviceId: string): number {
   for (const cat of pricingData.categories) {
@@ -95,7 +95,7 @@ export default function ServicesPage() {
           ))}
 
           <div className="text-center mt-4">
-            <Btn href="/contact" variant="primary">Book a Treatment</Btn>
+            <Btn href={SQUARE_BOOKING_URL} variant="primary">Book Now</Btn>
             <span className="mx-3" style={{ color: "#9a7868" }}>or</span>
             <Btn href="/bundles" variant="outline">View Bundles &amp; Save</Btn>
           </div>

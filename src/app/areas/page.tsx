@@ -6,7 +6,6 @@ import SectionTitle from "@/components/SectionTitle";
 import ImagePlaceholder from "@/components/ImagePlaceholder";
 import areasData from "../../../content/service-areas.json";
 import pricingData from "../../../content/pricing.json";
-import businessInfo from "../../../content/business-info.json";
 
 export const metadata: Metadata = {
   title: "Service Areas",

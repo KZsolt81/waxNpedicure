@@ -1,15 +1,17 @@
 import type { Metadata } from "next";
+import Btn from "@/components/Btn";
 import SectionTag from "@/components/SectionTag";
 import SectionTitle from "@/components/SectionTitle";
-import WhatsAppButton from "@/components/WhatsAppButton";
 import ContactForm from "@/components/ContactForm";
+import WhatsAppButton from "@/components/WhatsAppButton";
 import businessInfo from "../../../content/business-info.json";
 import servicesData from "../../../content/services.json";
 import bundlesData from "../../../content/bundles.json";
+import { FULL_CANCELLATION_POLICY, SHORT_BOOKING_POLICY, SQUARE_BOOKING_URL } from "@/lib/booking";
 
 export const metadata: Metadata = {
   title: "Contact & Booking",
-  description: "Book a mobile waxing or pedicure treatment in South East London. Message via WhatsApp or use our contact form.",
+  description: "Book your appointment through Square Appointments. No upfront payment at booking, with card-on-file no-show protection.",
 };
 
 export default function ContactPage() {
@@ -29,14 +31,14 @@ export default function ContactPage() {
             Book Your <em style={{ fontStyle: "italic", color: "var(--gold)" }}>Treatment</em>
           </SectionTitle>
           <p className="text-[0.95rem] font-light max-w-[560px] leading-[1.8] mt-2" style={{ color: "#5a4840" }}>
-            The quickest way to book is via WhatsApp. You can also use the form below and we&rsquo;ll confirm within a few hours.
+            Book through Square Appointments to check availability and request your slot.
           </p>
         </div>
       </div>
 
       <section className="py-24">
         <div className="max-w-[1180px] mx-auto px-6">
-          {/* WhatsApp CTA — prominent at the top */}
+          {/* Square Booking CTA — primary path */}
           <div
             className="flex flex-col sm:flex-row items-center justify-between gap-6 p-8 rounded-sm mb-16"
             style={{ background: "var(--ink)", color: "var(--paper)" }}
@@ -46,19 +48,61 @@ export default function ContactPage() {
                 className="font-light text-[1.4rem] mb-1"
                 style={{ fontFamily: "var(--font-serif), Georgia, serif" }}
               >
-                Prefer to message directly?
+                Ready to book?
               </p>
               <p className="text-sm font-light" style={{ opacity: 0.7 }}>
-                WhatsApp is the fastest way to check availability and confirm your booking.
+                No upfront payment. Card details may be required to secure your appointment.
               </p>
             </div>
-            <WhatsAppButton label="Open WhatsApp" />
+            <Btn href={SQUARE_BOOKING_URL} variant="rose">Book Now</Btn>
+          </div>
+
+          <div
+            id="square-booking"
+            className="p-7 rounded-sm mb-12"
+            style={{ background: "var(--mist)", border: "1px solid var(--blush)" }}
+          >
+            <h4
+              className="font-light text-[1.1rem] mb-3"
+              style={{ fontFamily: "var(--font-serif), Georgia, serif", color: "var(--ink)" }}
+            >
+              Square Appointments Booking
+            </h4>
+            <p className="text-sm font-light leading-relaxed mb-3" style={{ color: "#6a5048" }}>
+              {SHORT_BOOKING_POLICY}
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4">
+              <Btn href={SQUARE_BOOKING_URL} variant="primary">Book Now</Btn>
+              <WhatsAppButton />
+            </div>
+            <p className="text-[0.82rem] font-light mt-3" style={{ color: "#6a5048" }}>
+              Have a question before booking? Send us a WhatsApp message.
+            </p>
+            {/* Square Appointments booking button/embed goes here.
+            Get this from Square Dashboard:
+            Appointments / Payments > Appointments > Online Booking > Channels > Add your booking flow to an existing site.
+            Use either:
+            1) booking flow URL,
+            2) Square booking button HTML,
+            3) Square embed code.
+            */}
           </div>
 
           {/* Form + info */}
           <div className="grid md:grid-cols-2 gap-20 items-start">
-            {/* Contact form */}
-            <ContactForm serviceOptions={serviceOptions} />
+            {/* Contact form (general enquiries) */}
+            <div>
+              <h3
+                className="font-light text-[1.6rem] mb-3"
+                style={{ fontFamily: "var(--font-serif), Georgia, serif", color: "var(--ink)" }}
+              >
+                Ask a Question
+              </h3>
+              <p className="text-sm font-light leading-relaxed mb-6" style={{ color: "#6a5048" }}>
+                Not ready to book yet? Send a quick question and we&rsquo;ll get back to you.
+              </p>
+              <ContactForm serviceOptions={serviceOptions} />
+            </div>
 
             {/* Info cards */}
             <div className="flex flex-col gap-5">
@@ -106,7 +150,7 @@ export default function ContactPage() {
                   ❌ Cancellation
                 </h4>
                 <p className="text-sm font-light leading-relaxed" style={{ color: "#6a5048" }}>
-                  {businessInfo.cancellationPolicy}
+                  {FULL_CANCELLATION_POLICY}
                 </p>
               </div>
 
@@ -138,36 +182,12 @@ export default function ContactPage() {
                   className="font-light text-[1.1rem] mb-3"
                   style={{ fontFamily: "var(--font-serif), Georgia, serif", color: "var(--ink)" }}
                 >
-                  📱 Direct Contact
+                  📱 Questions
                 </h4>
-                <p className="text-sm font-light mb-2" style={{ color: "#6a5048" }}>
-                  WhatsApp:{" "}
-                  <a
-                    href={`https://wa.me/${businessInfo.whatsapp.replace(/\D/g, "")}`}
-                    style={{ color: "var(--rose)", fontWeight: 500 }}
-                  >
-                    {businessInfo.whatsapp}
-                  </a>
+                <p className="text-sm font-light mb-4" style={{ color: "#6a5048" }}>
+                  Have a question before booking? Chat with us directly on WhatsApp.
                 </p>
-                <p className="text-sm font-light" style={{ color: "#6a5048" }}>
-                  Email:{" "}
-                  <a href={`mailto:${businessInfo.email}`} style={{ color: "var(--rose)", fontWeight: 500 }}>
-                    {businessInfo.email}
-                  </a>
-                </p>
-                {businessInfo.instagram && (
-                  <p className="text-sm font-light mt-2" style={{ color: "#6a5048" }}>
-                    Instagram:{" "}
-                    <a
-                      href={`https://instagram.com/${businessInfo.instagram.replace("@", "")}`}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      style={{ color: "var(--rose)", fontWeight: 500 }}
-                    >
-                      {businessInfo.instagram}
-                    </a>
-                  </p>
-                )}
+                <WhatsAppButton fullWidth />
               </div>
             </div>
           </div>

@@ -1,4 +1,5 @@
 import Btn from "./Btn";
+import { SQUARE_BOOKING_URL } from "@/lib/booking";
 
 interface BundleItem {
   name: string;
@@ -83,8 +84,8 @@ export default function BundleCard({ tag, name, description, items, standardTota
         </span>
       </div>
 
-      <Btn href="/contact" variant={dark ? "rose" : "primary"}>
-        Book Bundle
+      <Btn href={SQUARE_BOOKING_URL} variant={dark ? "rose" : "primary"}>
+        Book Now
       </Btn>
     </div>
   );

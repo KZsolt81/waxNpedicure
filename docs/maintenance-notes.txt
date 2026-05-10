@@ -1,6 +1,10 @@
 MAINTENANCE NOTES
 =================
 
+LAST UPDATED
+------------
+2026-05-10 (Square Appointments + WhatsApp-first contact simplification completed)
+
 UPDATING CONTENT
 ----------------
 
@@ -8,7 +12,7 @@ All business-specific content lives in /content/*.json files.
 Edit these files to update prices, services, areas, FAQ, testimonials, and offers
 WITHOUT touching any React/TypeScript code.
 
-  content/business-info.json  — name, phone, WhatsApp, email, hours, policies
+  content/business-info.json  — name, branding, hours, policies
   content/services.json       — service categories and descriptions
   content/pricing.json        — prices, durations, travel fees
   content/bundles.json        — bundle combinations and savings
@@ -16,6 +20,66 @@ WITHOUT touching any React/TypeScript code.
   content/testimonials.json   — client reviews
   content/service-areas.json  — covered postcodes and travel info
   content/offers.json         — promotions (set active: true/false to show/hide)
+
+BOOKING FLOW (SQUARE APPOINTMENTS)
+----------------------------------
+
+Booking is now handled through Square Appointments.
+Primary booking URL is centralized in:
+
+  src/lib/booking.ts
+  SQUARE_BOOKING_URL = process.env.NEXT_PUBLIC_SQUARE_BOOKING_URL || "PASTE_SQUARE_BOOKING_URL_HERE"
+
+Environment variable:
+
+  .env.local.example
+  NEXT_PUBLIC_SQUARE_BOOKING_URL=PASTE_SQUARE_BOOKING_URL_HERE
+
+WhatsApp chat URL is centralized in:
+
+  src/lib/booking.ts
+  WHATSAPP_CHAT_URL = process.env.NEXT_PUBLIC_WHATSAPP_CHAT_URL || "PASTE_WHATSAPP_CHAT_URL_HERE"
+
+Environment variable:
+
+  .env.local.example
+  NEXT_PUBLIC_WHATSAPP_CHAT_URL=PASTE_WHATSAPP_CHAT_URL_HERE
+
+Current policy implemented across site content:
+- No upfront payment at booking
+- Card details may be required to secure appointment
+- Less than 24 hours cancellation or no-show: 50% of selected treatment price may be charged
+- Remaining balance is paid after treatment
+
+Square embed/button placeholder is on:
+
+  src/app/contact/page.tsx
+  (search for: "Square Appointments booking button/embed goes here")
+
+CONTACT PAGE STATUS
+-------------------
+
+The Contact page now serves two paths:
+1. Primary: Square booking CTA ("Book Now")
+2. Secondary: WhatsApp chat and question-only enquiry form
+
+Question form delivery is implemented via:
+  - Frontend form: /src/components/ContactForm.tsx
+  - Backend endpoint: /src/app/api/contact/route.ts
+  - Transport: Gmail SMTP using nodemailer
+
+Required environment variables:
+  - SMTP_HOST=smtp.gmail.com
+  - SMTP_PORT=465
+  - SMTP_SECURE=true
+  - SMTP_USER=PASTE_GMAIL_ADDRESS_HERE
+  - SMTP_PASSWORD=PASTE_GMAIL_APP_PASSWORD_HERE
+  - ENQUIRY_TO_EMAIL=PASTE_ENQUIRY_RECEIVING_EMAIL_HERE
+
+Important:
+  - Gmail App Password requires Google 2-Step Verification.
+  - Use Gmail App Password, not the normal Gmail login password.
+  - Do not render business email publicly in customer-facing UI.
 
 ADDING IMAGES
 -------------
@@ -29,12 +93,10 @@ ADDING IMAGES
 CONTACT FORM
 ------------
 
-The form in /src/components/ContactForm.tsx currently simulates a submission.
-To make it live, replace the setTimeout block with a real API call.
-Options:
-  - Resend / Sendgrid API via Next.js /app/api/contact/route.ts
-  - Formspree (no backend needed — just change the fetch URL)
-  - EmailJS (client-side, no backend)
+Contact form is for enquiries only (not primary booking).
+Primary booking should remain Square Appointments CTA links.
+Do not route booking requests through the form.
+Form submits to /api/contact and sends email via Gmail SMTP.
 
 ADDING A NEW SERVICE
 --------------------
@@ -56,7 +118,11 @@ GOING LIVE (VERCEL)
 1. Push to GitHub
 2. Connect repo to Vercel at vercel.com/new
 3. Set NEXT_PUBLIC_SITE_URL environment variable to your domain
-4. Vercel handles build and deployment automatically
+4. Set NEXT_PUBLIC_SQUARE_BOOKING_URL to your real Square booking URL
+5. Set NEXT_PUBLIC_WHATSAPP_CHAT_URL to your real WhatsApp wa.me URL
+6. Set SMTP_HOST, SMTP_PORT, SMTP_SECURE, SMTP_USER, SMTP_PASSWORD, and ENQUIRY_TO_EMAIL
+7. Ensure Gmail account has 2-Step Verification + App Password enabled
+8. Vercel handles build and deployment automatically
 
 LOCAL DEVELOPMENT
 -----------------
@@ -71,3 +137,58 @@ ADDING A NEW PAGE
 Create a folder under /src/app/ and add a page.tsx file following the
 pattern of existing pages (export metadata, export default function).
 Add the link to Navbar.tsx and Footer.tsx.
+
+TODAY'S COMPLETED CHANGES (2026-05-10)
+--------------------------------------
+
+- Privacy page updated from placeholder to structured GDPR-style content and wired to business email data with fallback handling.
+- Terms page updated from placeholder to structured booking/service terms and wired to business data (minimum booking, cancellation policy, payment methods).
+- Lint cleanup completed in unrelated pages/components by removing unused imports/variables:
+  src/app/areas/page.tsx, src/app/offers/page.tsx, src/app/services/page.tsx, src/components/ServiceCard.tsx.
+- Replaced old booking/deposit-style wording with Square Appointments wording.
+- Added centralized booking config in src/lib/booking.ts.
+- Updated booking CTAs across Navbar and key pages to use "Book an Appointment".
+- Added short booking policy near booking CTAs:
+  "No upfront payment. Card details may be required to secure your appointment.
+   A 50% late cancellation/no-show fee may apply if cancelled with less than 24 hours' notice."
+- Added full cancellation/no-show policy wording to Terms and Contact page content.
+- Updated FAQ entries for:
+  - Do I need to pay when booking?
+  - Why do I need to enter card details?
+  - What is the cancellation policy?
+  - When do I pay for the treatment?
+- Updated metadata text where relevant to reflect Square booking.
+- Verification completed: npm run lint (clean), npm run build (success; all app routes statically generated).
+
+CONTACT STRATEGY UPDATE (2026-05-10)
+------------------------------------
+
+- Public phone number and public email display removed from customer-facing pages.
+- Existing WhatsApp chat option kept and promoted as the main direct-contact method.
+- Booking remains routed through Square Appointments ("Book Now").
+- Contact form changed to question-only flow ("Send Question").
+
+POST-DEPLOYMENT TEST CHECKLIST
+------------------------------
+
+- Verify WhatsApp CTA opens the correct link on mobile and desktop.
+- Verify Book Now CTA opens the correct Square booking flow from:
+  - Navbar
+  - Contact page
+  - Home and other key CTA sections
+- Verify question form submits and success state displays correctly.
+- Verify enquiry email is received at ENQUIRY_TO_EMAIL.
+- Verify no public email address or phone number appears on customer-facing pages.
+- Verify cancellation/no-show policy text is visible and consistent.
+
+KNOWN FOLLOW-UPS
+----------------
+
+- Replace placeholder URL values:
+  - PASTE_WHATSAPP_CHAT_URL_HERE
+  - PASTE_SQUARE_BOOKING_URL_HERE
+- Replace Gmail placeholders:
+  - PASTE_GMAIL_ADDRESS_HERE
+  - PASTE_GMAIL_APP_PASSWORD_HERE
+  - PASTE_ENQUIRY_RECEIVING_EMAIL_HERE
+- Confirm Square Appointments card-on-file/no-show settings match site policy (24h, 50% fee).

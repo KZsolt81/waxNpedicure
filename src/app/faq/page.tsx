@@ -4,6 +4,7 @@ import FAQItem from "@/components/FAQItem";
 import SectionTag from "@/components/SectionTag";
 import SectionTitle from "@/components/SectionTitle";
 import faqData from "../../../content/faq.json";
+import { SQUARE_BOOKING_URL } from "@/lib/booking";
 
 export const metadata: Metadata = {
   title: "FAQ",
@@ -63,7 +64,10 @@ export default function FAQPage() {
             <p className="text-sm font-light mb-6" style={{ color: "rgba(250,246,243,.6)" }}>
               Send us a message and we&rsquo;ll get back to you as soon as possible.
             </p>
-            <Btn href="/contact" variant="rose">Get in Touch</Btn>
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+              <Btn href={SQUARE_BOOKING_URL} variant="rose">Book Now</Btn>
+              <Btn href="/contact" variant="outline">General Enquiries</Btn>
+            </div>
           </div>
         </div>
       </section>
